@@ -1,0 +1,270 @@
+<mvc:View
+    controllerName="NAMESPACE.zcashclose.controller.Object"
+	xmlns:m="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+    xmlns:u="sap.ui.unified"
+	xmlns:layout="sap.ui.layout"
+	xmlns:semantic="sap.f.semantic"
+	xmlns:t="sap.ui.table"
+	xmlns:core="sap.ui.core"
+	xmlns:form="sap.ui.layout.form">
+
+	<semantic:SemanticPage
+		id="page"
+		headerPinnable="true"
+		toggleHeaderOnTitleClick="true"
+		busy="{objectView>/busy}">
+
+		<semantic:titleHeading>
+			<m:Title text="{i18n>Info}" />
+		</semantic:titleHeading>
+
+		<semantic:headerContent >
+			<layout:BlockLayout background="Mixed" visible="true">
+				<layout:BlockLayoutRow scrollable="false">
+					<layout:BlockLayoutCell   backgroundColorSet="ColorSet6" backgroundColorShade="ShadeE" >
+						<m:VBox>
+							<m:Panel>
+								<m:FlexBox>
+									<m:Label text="{i18n>Caja}: "  width="auto" textAlign="End" textDirection="Inherit" visible="true"/>
+									<m:MultiInput id="help_ObjCaja" value="{cajaModel>/0/Caja}" width="35%" required="true" tokenUpdate="onTokenUpdate" showValueHelp="false" valueHelpOnly="false" valueHelpRequest="handleSelectPressObjCaja" enabled="false">
+										<m:layoutData>
+											<m:FlexItemData growFactor="1" />
+										</m:layoutData>
+									</m:MultiInput>
+									
+									<m:Label text="{i18n>Fech}: "  width="auto" textAlign="End" textDirection="Inherit" visible="true"/>
+									<m:Input id="txtFech" value="{cajaModel>/0/FechaFact}"  required="true"  width="50%" textAlign="Begin" textDirection="Inherit" visible="true" enabled="false"  >
+										<m:layoutData>
+											<m:FlexItemData growFactor="1" />
+										</m:layoutData>
+									</m:Input>
+									<m:Label  text="{i18n>User}: "  width="auto" textAlign="End" textDirection="Inherit" visible="true"/>
+									<m:Input id="txtUser" value="{cajaModel>/0/Usuario}"  required="true"  width="40%" textAlign="Begin" textDirection="Inherit" visible="true" enabled="false">
+										<m:layoutData>
+											<m:FlexItemData growFactor="1" />
+										</m:layoutData>
+									</m:Input>
+									<!-- <m:Button icon="sap-icon://accept" tooltip="{i18n>clsingCash}" type="Emphasized" text="{i18n>clsingCash}" press="_onClosingCash">
+										<m:layoutData>
+											<m:FlexItemData growFactor="1" />
+										</m:layoutData>
+									</m:Button> -->
+								</m:FlexBox>
+							</m:Panel>
+						</m:VBox>
+					</layout:BlockLayoutCell>
+				</layout:BlockLayoutRow>
+			</layout:BlockLayout>
+		</semantic:headerContent>
+		<semantic:content>
+				<layout:BlockLayout background="Mixed" visible="true" >
+					<layout:content>
+						<layout:BlockLayoutRow scrollable="false"  title="Detalle de Saldos">
+						<layout:BlockLayoutCell width="40%"  backgroundColorSet="ColorSet7" backgroundColorShade="ShadeD"  >
+							<form:SimpleForm editable="true"  layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="5" labelSpanS="5" adjustLabelSpan="false" columnsXL="2" columnsL="2" columnsM="2" singleContainerFullSize="true">
+								<form:content>
+									<core:Title text="Saldos Totales"/>
+									<m:Label text="{i18n>SldInit}"  width="100%" required="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+									<m:Input id="txtsldInicial"  value="{cajaModel>/0/SaldoInicial}" required="true" width="auto" textAlign="Begin" textDirection="Inherit" visible="true" enabled="false" />
+								
+									<m:Label text="{i18n>totIng}"  width="100%" required="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+									<m:Input id="txtTotIngreso"   value="{cajaModel>/0/Ingresos}" required="true" width="auto"  textAlign="Begin" textDirection="Inherit" visible="true" enabled="false" />
+									<m:Label text="{i18n>totEg}"  width="100%" required="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+									<m:Input id="txtTotEgreso"   value="{cajaModel>/0/Egresos}" required="true" width="auto"  textAlign="Begin" textDirection="Inherit" visible="true" enabled="false" />
+								
+									<m:Label text="{i18n>SaldoFin}"  width="100%" required="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+									<m:Input id="txtSaldoFin"   value="{cajaModel>/0/SaldoFinal}" required="true" width="auto"  textAlign="Begin" textDirection="Inherit" visible="true" enabled="false" />
+								</form:content>
+                                
+							</form:SimpleForm>	
+                            <form:SimpleForm editable="true"   adjustLabelSpan="true"  singleContainerFullSize="true">
+                                <form:content>
+                                    <m:Button text="{i18n>printQuery}" icon="sap-icon://print" type="Emphasized" iconFirst="true" width="50%" enabled="true" visible="true" iconDensityAware="false" press="_onButtonPress1"/>
+                                </form:content>
+                            </form:SimpleForm>
+						</layout:BlockLayoutCell>
+                        
+						<layout:BlockLayoutCell width="70%"  backgroundColorSet="ColorSet2" backgroundColorShade="ShadeE" >
+							<t:Table id="tableSaldos" rows="{ path: 'cajaModel>/0/NavIngresos/results', sorter: { path: 'Vin', descending: true } }" selectionMode="None"
+								 class="sapUiTinyMarginBottom" visibleRowCount="5"
+								ariaLabelledBy="title">
+								<t:extension>
+									<m:HBox>
+										<m:items></m:items>
+									</m:HBox>
+									<m:OverflowToolbar>
+										<m:ToolbarSpacer width=""/>
+										<m:SearchField id="idSearchSaldos" placeholder="Buscar" visible="false" width="20%" search="onSearchFieldLiveChange"/>
+										<m:Button icon="sap-icon://excel-attachment" tooltip="{i18n>btnExportar}" text="" visible="false" type="Accept" press="download"/>
+									</m:OverflowToolbar>
+								</t:extension>
+								<t:columns>
+									<t:Column sortProperty="Movimiento" filterProperty="Movimiento" width="7rem">
+										<m:Label text="{i18n>Mov}"/>
+										<t:template>
+											<m:Text text="{cajaModel>Movimiento}" wrapping="false"/>
+										</t:template>
+									</t:Column>
+									<t:Column sortProperty="MetodoPago" filterProperty="MetodoPago" width="3rem">
+										<m:Label text="{i18n>VP}"/>
+										<t:template>
+											<m:Text text="{cajaModel>MetodoPago}" wrapping="false"/>
+										</t:template>
+									</t:Column>
+									<t:Column sortProperty="RefPago" filterProperty="MetodoPago" width="7rem">
+										<m:Label text="{i18n>RefPago}" wrapping="true"/>
+										<t:template>
+											<m:Text text="" wrapping="false"/>
+										</t:template>
+									</t:Column>
+									<t:Column sortProperty="Ingreso" filterProperty="Ingreso" width="7rem">
+										<m:Label text="{i18n>Importe}"/>
+										<t:template>
+											<u:Currency value="{
+												path: 'cajaModel>Ingreso',
+												type: 'sap.ui.model.type.String'
+											}" />
+											
+										</t:template>
+									</t:Column>
+									<t:Column sortProperty="IngresoMoneda" filterProperty="IngresoMoneda" width="7rem">
+										<m:Label text="{i18n>Moneda}"/>
+										<t:template>
+											<m:Text text="{cajaModel>IngresoMoneda}" wrapping="false"/>
+										</t:template>
+									</t:Column>
+									<t:Column sortProperty="Total" filterProperty="Total" width="7rem">
+										<m:Label text="{i18n>ImpMl}"/>
+										<t:template>
+											<u:Currency value="{
+												path: 'cajaModel>Total',
+												type: 'sap.ui.model.type.String'
+											}" />
+										</t:template>
+									</t:Column>
+								</t:columns>
+									<t:footer>
+										<m:OverflowToolbar id="IdTotal">
+                                        <m:Label design="Bold" text="{i18n>Totales}"/>
+										<m:ToolbarSpacer width="35%"/>
+										<m:Text design="Bold" text="{path: 'cajaModel>/0/SumTotal',type: 'sap.ui.model.type.Float', formatOptions: { maxFractionDigits : 2, minFractionDigits: 0, groupingSeparator: ',', decimalSeparator: '.', groupingEnabled: true }} {cajaModel>/0/SumTotalMoneda}" wrapping="false"/>
+										<m:ToolbarSpacer width="20%"/>
+										<m:Text design="Bold" text="{path: 'cajaModel>/0/SumTotalML',type: 'sap.ui.model.type.Float', formatOptions: { maxFractionDigits : 2, minFractionDigits: 0, groupingSeparator: ',', decimalSeparator: '.', groupingEnabled: true }} {cajaModel>/0/SumTotalMoneda}" wrapping="false"/>
+                                        </m:OverflowToolbar>
+									</t:footer>
+							</t:Table>	
+							
+						</layout:BlockLayoutCell>
+					</layout:BlockLayoutRow>
+					<layout:BlockLayoutRow scrollable="false">
+						<layout:BlockLayoutCell   backgroundColorSet="ColorSet2" backgroundColorShade="ShadeE" >
+							<t:Table id="table" rows="{ path: 'cajaModel>/0/NavMovimientos/results', sorter: { path: 'Indice', descending: true } }" selectionMode="None"
+								rowActionCount="1" class="sapUiTinyMarginBottom" rowSelectionChange=".onPress" visibleRowCount="5"
+								ariaLabelledBy="title">
+								
+								<t:columns>
+                                    <t:Column sortProperty="Indice" filterProperty="Indice" width="4rem">
+										<m:Label text="{i18n>Ind}"/>
+										<t:template>
+											<m:Text text="{cajaModel>Indice}" wrapping="false"/>
+										</t:template>
+									</t:Column>
+                                    <t:Column sortProperty="Caja" filterProperty="Caja" width="5rem">
+										<m:Label text="{i18n>Caja}"/>
+										<t:template>
+											<m:Text text="{cajaModel>Caja}" wrapping="false"/>
+										</t:template>
+									</t:Column>
+									<t:Column sortProperty="Operacion" filterProperty="Operacion" width="8rem">
+										<m:Label text="{i18n>Oper}"/>
+										<t:template>
+											<m:Text text="{cajaModel>Operacion}" wrapping="false"/>
+										</t:template>
+									</t:Column>
+									<t:Column sortProperty="Cliente" filterProperty="Cliente" width="7rem">
+										<m:Label text="{i18n>Cli}"/>
+										<t:template>
+											<m:Text text="{cajaModel>Cliente}" wrapping="false"/>
+										</t:template>
+									</t:Column>
+                                    <t:Column sortProperty="ViaPago" filterProperty="ViaPago" width="4rem">
+										<m:Label text="{i18n>ViaPag}"/>
+										<t:template>
+											<m:Text text="{cajaModel>ViaPago}" wrapping="false"/>
+										</t:template>
+									</t:Column>
+									<t:Column sortProperty="ReferenciaPago" filterProperty="ReferenciaPago" width="7rem">
+										<m:Label text="{i18n>RefPag}"/>
+										<t:template>
+											<m:Text text="{cajaModel>ReferenciaPago}" wrapping="false"/>
+										</t:template>
+									</t:Column>
+									<t:Column sortProperty="ImporteMoneda" filterProperty="ImporteMoneda" width="8rem">
+										<m:Label text="{i18n>Moneda}"/>
+										<t:template>
+												<m:Text text="{cajaModel>ImporteMoneda}" wrapping="false"/>
+										</t:template>
+									</t:Column>
+									<t:Column sortProperty="Importe" filterProperty="Importe" width="8rem">
+										<m:Label text="{i18n>Importe}"/>
+										<t:template>
+												<u:Currency value="{
+                                                    path: 'cajaModel>Importe',
+                                                    type: 'sap.ui.model.type.String'
+                                                }" />
+										</t:template>
+									</t:Column>
+									<t:Column sortProperty="Documento" filterProperty="Documento" width="7rem">
+										<m:Label text="{i18n>noDocto}"/>
+										<t:template>
+											<m:Text text="{cajaModel>Documento}" wrapping="false"/>
+										</t:template>
+									</t:Column>
+									<t:Column sortProperty="FechaContabilizacion" filterProperty="FechaContabilizacion" width="7rem">
+										<m:Label text="{i18n>fecCont}"/>
+										<t:template>
+											<m:Text text="{cajaModel>FechaCont}" wrapping="false"/>
+										</t:template>
+									</t:Column>
+									<t:Column sortProperty="ClaveReferencia" filterProperty="ClaveReferencia" width="7rem">
+										<m:Label text="{i18n>clvRef}"/>
+										<t:template>
+											<m:Text text="{cajaModel>ClaveReferencia}" wrapping="false"/>
+										</t:template>
+									</t:Column>
+									<t:Column sortProperty="Cuenta" filterProperty="Cuenta" width="7rem">
+										<m:Label text="{i18n>ctaBanc}"/>
+										<t:template>
+											<m:Text text="{cajaModel>Cuenta}" wrapping="false"/>
+										</t:template>
+									</t:Column>
+                                    <t:Column sortProperty="FechaVen" filterProperty="FechaVen" width="7rem">
+										<m:Label text="{i18n>fecVenc}"/>
+										<t:template>
+											<m:Text text="{cajaModel>FechaVen}" wrapping="false"/>
+										</t:template>
+									</t:Column>
+                                    <t:Column sortProperty="ClaveAutorizacion" filterProperty="ClaveAutorizacion" width="7rem">
+										<m:Label text="{i18n>cvAut}"/>
+										<t:template>
+											<m:Text text="{cajaModel>ClaveAutorizacion}" wrapping="false"/>
+										</t:template>
+									</t:Column>
+                                    <t:Column sortProperty="Pagador" filterProperty="Pagador" width="7rem">
+										<m:Label text="{i18n>Pagador}"/>
+										<t:template>
+											<m:Text text="{cajaModel>Pagador}" wrapping="false"/>
+										</t:template>
+									</t:Column>
+								</t:columns>
+							</t:Table>		
+						</layout:BlockLayoutCell>
+					</layout:BlockLayoutRow>
+                </layout:content>
+					
+				</layout:BlockLayout>
+			</semantic:content>
+	</semantic:SemanticPage>
+
+</mvc:View>

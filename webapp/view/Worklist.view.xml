@@ -1,0 +1,66 @@
+<mvc:View
+    controllerName="NAMESPACE.zcashclose.controller.Worklist"
+    xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:semantic="sap.f.semantic"
+	xmlns:form="sap.ui.layout.form" 
+	xmlns:layout="sap.ui.layout">
+
+    <semantic:SemanticPage
+        id="page"
+        headerPinnable="false"
+		
+		>
+
+        <semantic:titleHeading>
+            <Title
+                text="{i18n>worklistTitle}"
+                level="H2"/>
+        </semantic:titleHeading>
+
+        <semantic:content>
+            <layout:BlockLayout background="Mixed" >
+				<layout:content>
+					<layout:BlockLayoutRow >
+						<layout:content>
+							<layout:BlockLayoutCell width="4">
+								<layout:content>
+									<form:SimpleForm id="formularioId01" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4"  labelSpanM="4" title="{i18n>AdmonCaja}"
+													labelSpanS="4" adjustLabelSpan="false" columnsXL="2"  columnsM="2" >
+										<Label text="{i18n>Sociedad}"  width="100%" required="true"   />
+										<MultiInput id="help_Society" width="40%" required="true"  showValueHelp="false" valueHelpOnly="false"  valueStateText="Campo requerido" liveChange="onLiveTextChange" />
+										
+										<Label text="{i18n>Div}"  width="100%" required="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+										<MultiInput id="help_Div" width="40%" required="true"  showValueHelp="false" valueHelpOnly="false"  valueStateText="Campo requerido" liveChange="onLiveTextChange"/>
+										
+										<Label text="{i18n>Fecha}"  width="100%" required="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+										<DatePicker
+											id="DP1"
+											 width="40%"
+											placeholder="Seleccione Fecha"
+											displayFormat="short"
+											valueFormat="dd-MM-yyyy"
+											change="handleChange"/>
+
+										<Label text="{i18n>Caja}"  width="100%" required="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+										<Input id="idCaja"  required="true" width="40%" textAlign="Begin" textDirection="Inherit" visible="true" valueStateText="Campo requerido" liveChange="onLiveTextChange"/>
+
+                                        <Label text="{i18n>User}"  width="100%" required="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+										<Input id="idUser"  required="true" width="40%" textAlign="Begin" textDirection="Inherit" visible="true" valueStateText="Campo requerido" liveChange="onLiveTextChange"/>
+									</form:SimpleForm>
+									<Toolbar width="67%" >
+										<ToolbarSpacer/>
+										<ToolbarSpacer/>
+										<Button type="Emphasized" text="{i18n>Acces}" press="_onLoginClosingCash"/>
+									</Toolbar>
+								</layout:content>
+							</layout:BlockLayoutCell>
+						</layout:content>
+					</layout:BlockLayoutRow>
+				</layout:content>
+			</layout:BlockLayout>
+        </semantic:content>
+
+    </semantic:SemanticPage>
+
+</mvc:View>
