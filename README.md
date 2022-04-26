@@ -8,8 +8,8 @@
 |**Floorplan Used**<br>1worklist|
 |**Service Type**<br>SAP System (ABAP On Premise)|
 |**Service URL**<br>http://10.2.8.124:8000/sap/opu/odata/sap/Z_CASHBOX_SRV
-|**Module Name**<br>zcashclose|
-|**Application Title**<br>Cierre de caja|
+|**Module Name**<br>zcashquerymovements|
+|**Application Title**<br>Consulta de movimientos|
 |**Namespace**<br>NAMESPACE|
 |**UI5 Theme**<br>sap_fiori_3|
 |**UI5 Version**<br>1.84.1|
@@ -19,7 +19,7 @@
 |**Object collection key**<br>Segmento|
 |**Object ID**<br>Segmento|
 
-## zcashclose
+## zcashquerymovements
 
 A Fiori application to cash close operations
 

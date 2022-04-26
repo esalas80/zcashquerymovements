@@ -1,5 +1,5 @@
 <mvc:View
-    controllerName="NAMESPACE.zcashclose.controller.NotFound"
+    controllerName="GASS.zcashquerymovements.controller.NotFound"
     xmlns="sap.m"
     xmlns:mvc="sap.ui.core.mvc">
 

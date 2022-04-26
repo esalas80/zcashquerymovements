@@ -1,7 +1,7 @@
 {
   "_version": "1.28.0",
   "sap.app": {
-    "id": "NAMESPACE.zcashclose",
+    "id": "GASS.zcashquerymovements",
     "type": "application",
     "i18n": "i18n/i18n.properties",
     "applicationVersion": {
@@ -61,7 +61,7 @@
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
-          "bundleName": "NAMESPACE.zcashclose.i18n.i18n"
+          "bundleName": "GASS.zcashquerymovements.i18n.i18n"
         }
       },
       "": {
@@ -77,7 +77,7 @@
       "config": {
         "routerClass": "sap.m.routing.Router",
         "viewType": "XML",
-        "viewPath": "NAMESPACE.zcashclose.view",
+        "viewPath": "GASS.zcashquerymovements.view",
         "controlId": "app",
         "controlAggregation": "pages",
         "bypassed": {
@@ -101,6 +101,20 @@
           "target": [
             "object"
           ]
+        },
+        {
+          "pattern": "queryprinter",
+          "name": "queryprinter",
+          "target": [
+            "queryprinter"
+          ]
+        },
+        {
+          "pattern": "documents",
+          "name": "documents",
+          "target": [
+            "documents"
+          ]
         }
       ],
       "targets": {
@@ -116,6 +130,18 @@
           "viewLevel": 2,
           "title": "{i18n>objectViewTitle}"
         },
+        "queryprinter": {
+          "viewName": "queryprinter",
+          "viewId": "queryprinter",
+          "viewLevel": 3,
+          "title": "{i18n>QueryPrinterViewTitle}"
+        },
+        "documents": {
+          "viewName": "documents",
+          "viewId": "documents",
+          "viewLevel": 4,
+          "title": "{i18n>DocumentsViewerViewTitle}"
+        },
         "objectNotFound": {
           "viewName": "ObjectNotFound",
           "viewId": "objectNotFound"
@@ -127,7 +153,7 @@
       }
     },
     "rootView": {
-      "viewName": "NAMESPACE.zcashclose.view.App",
+      "viewName": "GASS.zcashquerymovements.view.App",
       "type": "XML",
       "async": true,
       "id": "app"

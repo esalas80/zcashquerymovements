@@ -4,7 +4,7 @@ sap.ui.define([
 ], function(Opa5, ODataModel) {
 	"use strict";
 
-	return Opa5.extend("NAMESPACE.zcashclose.test.integration.arrangements.Startup", {
+	return Opa5.extend("GASS.zcashquerymovements.test.integration.arrangements.Startup", {
 
 		/**
 		 * Initializes mock server, then starts the app component
@@ -24,7 +24,7 @@ sap.ui.define([
 			// start the app UI component
 			this.iStartMyUIComponent({
 				componentConfig: {
-					name: "NAMESPACE.zcashclose",
+					name: "GASS.zcashquerymovements",
 					async: true
 				},
 				hash: oOptions.hash,

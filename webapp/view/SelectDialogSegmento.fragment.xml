@@ -1,0 +1,9 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+
+	<SelectDialog id="SelectDialog_Seg" noDataText="No se encontraron Segmentos" title="Segmentos" search="handleSearchSegmento"
+		confirm="handleValueSegHelppress" cancel="handleValueSegHelppress" items="{path:'catSegmento>/', sorter : {path : 'Segment'}}"
+		busy="{test>/busyDialog}">
+		<StandardListItem icon="sap-icon://machine" title="{catSegmento>Segment}" description="" info="{catSegmento>Segment}" />
+	</SelectDialog>
+
+</core:FragmentDefinition>

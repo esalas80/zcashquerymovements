@@ -1,7 +1,7 @@
 /* global QUnit */
 
 sap.ui.require([
-	"NAMESPACE/zcashclose/test/integration/AllJourneys"
+	"NAMESPACE/zcashquerymovements/test/integration/AllJourneys"
 ], function() {
 	QUnit.config.autostart = false;
 	QUnit.start();

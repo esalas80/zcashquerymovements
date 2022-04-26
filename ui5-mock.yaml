@@ -2,7 +2,7 @@
 
 specVersion: "2.5"
 metadata:
-  name: NAMESPACE.zcashclose
+  name: GASS.zcashquerymovements
 type: application
 server:
   customMiddleware:

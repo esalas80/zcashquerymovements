@@ -1,5 +1,5 @@
 <mvc:View
-    controllerName="NAMESPACE.zcashclose.controller.Worklist"
+    controllerName="GASS.zcashquerymovements.controller.Worklist"
     xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc"
 	xmlns:semantic="sap.f.semantic"
@@ -28,22 +28,24 @@
 									<form:SimpleForm id="formularioId01" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4"  labelSpanM="4" title="{i18n>AdmonCaja}"
 													labelSpanS="4" adjustLabelSpan="false" columnsXL="2"  columnsM="2" >
 										<Label text="{i18n>Sociedad}"  width="100%" required="true"   />
-										<MultiInput id="help_Society" width="40%" required="true"  showValueHelp="false" valueHelpOnly="false"  valueStateText="Campo requerido" liveChange="onLiveTextChange" />
+										<MultiInput id="help_Society" width="40%" required="true"  showValueHelp="true" valueHelpOnly="false"  valueStateText="Campo requerido" liveChange="onLiveTextChange" valueHelpRequest="handleSelectSociety" />
 										
 										<Label text="{i18n>Div}"  width="100%" required="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
-										<MultiInput id="help_Div" width="40%" required="true"  showValueHelp="false" valueHelpOnly="false"  valueStateText="Campo requerido" liveChange="onLiveTextChange"/>
+										<MultiInput id="help_Div" width="40%" required="true"  showValueHelp="true" valueHelpOnly="false"  valueStateText="Campo requerido" liveChange="onLiveTextChange" valueHelpRequest="handleSelectSegmento"/>
 										
 										<Label text="{i18n>Fecha}"  width="100%" required="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
 										<DatePicker
-											id="DP1"
+											id="idDPFecha"
 											 width="40%"
 											placeholder="Seleccione Fecha"
-											displayFormat="short"
-											valueFormat="dd-MM-yyyy"
+											valueFormat="yyyy-MM-dd" 
+											displayFormat="dd-MM-yyyy"
+											secondaryCalendarType="Gregorian"
+											
 											change="handleChange"/>
 
 										<Label text="{i18n>Caja}"  width="100%" required="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
-										<Input id="idCaja"  required="true" width="40%" textAlign="Begin" textDirection="Inherit" visible="true" valueStateText="Campo requerido" liveChange="onLiveTextChange"/>
+										<MultiInput id="help_Caja" width="40%" required="true"  showValueHelp="true" valueHelpOnly="false"  valueStateText="Campo requerido" liveChange="onLiveTextChange" valueHelpRequest="handleSelectCaja"/>
 
                                         <Label text="{i18n>User}"  width="100%" required="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
 										<Input id="idUser"  required="true" width="40%" textAlign="Begin" textDirection="Inherit" visible="true" valueStateText="Campo requerido" liveChange="onLiveTextChange"/>

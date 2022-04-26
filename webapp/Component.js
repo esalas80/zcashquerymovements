@@ -6,7 +6,7 @@ sap.ui.define([
 ], function (UIComponent, Device, models, ErrorHandler) {
     "use strict";
 
-    return UIComponent.extend("NAMESPACE.zcashclose.Component", {
+    return UIComponent.extend("GASS.zcashquerymovements.Component", {
 
         metadata : {
             manifest: "json"

@@ -3,7 +3,7 @@ sap.ui.define([
 ], function(Opa5) {
 	"use strict";
 
-	return Opa5.extend("NAMESPACE.zcashclose.test.integration.pages.Common", {
+	return Opa5.extend("GASS.zcashquerymovements.test.integration.pages.Common", {
 
 
 

@@ -2,14 +2,17 @@ sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/core/UIComponent",
     "sap/m/library",
-    "sap/m/MessageBox"
-], function (Controller, UIComponent, mobileLibrary, MessageBox) {
+    "sap/m/MessageBox",
+	"sap/m/MessageToast",
+	"sap/ui/export/Spreadsheet",
+	"sap/ushell/services/Container"
+], function (Controller, UIComponent, mobileLibrary, MessageBox, MessageToast, Spreadsheet, Container) {
     "use strict";
 
     // shortcut for sap.m.URLHelper
     var URLHelper = mobileLibrary.URLHelper;
 
-    return Controller.extend("NAMESPACE.zcashclose.controller.BaseController", {
+    return Controller.extend("GASS.zcashquerymovements.controller.BaseController", {
         /**
          * Convenience method for accessing the router.
          * @public
@@ -192,6 +195,80 @@ sap.ui.define([
 				});
 			})
 
+		},
+		_onGetExcel: function (oModel) {
+			var aCols, aProducts, oSettings, oSheet;
+			aCols = this.createColumns();
+			aProducts = oModel;
+			var dtValue = new Date();
+			//oView.setModel(aProducts, "modelV4");
+			oSettings = {
+				workbook: {
+					columns: aCols
+				},
+				dataSource: aProducts,
+				fileName: "RptMovimientos_" + String(dtValue.getDate()) + String(dtValue.getMonth()+1) + String(dtValue.getFullYear()) + String(dtValue.getHours()) + String(dtValue.getMinutes())				
+			};
+			oSheet = new Spreadsheet(oSettings);
+			oSheet.build()
+				.then(function () {
+					sap.ui.core.BusyIndicator.hide();
+					MessageToast.show('Termino la descarga!');
+				})
+				.finally(function () {
+					oSheet.destroy();
+				});
+		},
+		//Complemento para downloadExcel
+		createColumns: function () {
+			return [{
+				label: 'Indice',
+				property: 'Indice',
+			}, {
+				label: 'Caja',
+				property: 'CajeroSecuencia',
+			}, {
+				label: 'Operacion',
+				property: 'DecCentro',
+			}, {
+				label: 'Cliente',
+				property: 'Cliente',
+			}, {
+				label: 'Via Pago',
+				property: 'ViaPago',
+			}, {
+				label: 'Ref. Pago',
+				property: 'ReferenciaPago',
+			}, {
+				label: 'Moneda',
+				property: 'ImporteMoneda',
+			}, {
+				label: 'Importe',
+				property: 'Importe',
+			}, {
+				label: 'Nro. Documento',
+				property: 'Documento',
+			}, {
+				label: 'Fecha Contabilización',
+				property: 'FechaConta',
+                format: "dd-mm-yyyy"
+			}, {
+				label: 'Fecha Documento',
+				property: 'FechaDoc',
+                format: "dd-mm-yyyy"
+			}, {
+				label: 'Banco',
+				property: 'BancoCajero',
+			}, {
+				label: 'Cta. Bancaria',
+				property: 'CuentaBancaria',
+			}, {
+				label: 'Cv. Autorización',
+				property: 'vin',
+			}, {
+				label: 'Pagador',
+				property: 'Pagador',
+			}];
 		}
     });
 

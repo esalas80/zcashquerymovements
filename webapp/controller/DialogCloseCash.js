@@ -6,11 +6,11 @@ sap.ui.define([
 	"./BaseController"
 ], function(BaseController, MessageBox, Utilities, Fragment, History, Edit) {
 
-	return BaseController.extend("NAMESPACE.zcashclose.controller.DialogCloseCash", {
-	// return BaseController.extend("NAMESPACE.zcashclose.controller.DialogCloseCash", {
+	return BaseController.extend("GASS.zcashquerymovements.controller.DialogCloseCash", {
+	// return BaseController.extend("GASS.zcashquerymovements.controller.DialogCloseCash", {
 		constructor: function(oView) {
 			this._oView = oView;
-			this._oControl = sap.ui.xmlfragment(oView.getId(), "NAMESPACE.zcashclose.view.DialogCloseCash", this);
+			this._oControl = sap.ui.xmlfragment(oView.getId(), "GASS.zcashquerymovements.view.DialogCloseCash", this);
 			this._bInit = false;
 		},
 
@@ -184,7 +184,7 @@ sap.ui.define([
 				var message = resp.EvDescription != undefined? resp.EvDescription: "";
 				if(resp.EvCode =="1"){
 					sap.ui.core.BusyIndicator.hide();
-					MessageBox.success("Cierre de caja realizado con exito \n " + message  , {
+					MessageBox.success("Consulta de movimientos realizado con exito \n " + message  , {
 						icon: MessageBox.Icon.SUCCESS,
 						title: "Éxito",
 						onClose: function(){
@@ -193,7 +193,7 @@ sap.ui.define([
 					});
 				}
 				else{
-					MessageBox.error("Error al solicitar cierre de caja", {
+					MessageBox.error("Error al solicitar Consulta de movimientos", {
 						icon: MessageBox.Icon.ERROR,
 						title: "Error",
 						onClose: function(){
@@ -203,7 +203,7 @@ sap.ui.define([
 				}
 			}.bind(this)).catch(function(err){
                 sap.ui.core.BusyIndicator.hide();
-                MessageBox.error("Error al solicitar cierre de caja", {
+                MessageBox.error("Error al solicitar Consulta de movimientos", {
                     icon: MessageBox.Icon.ERROR,
                     title: "Error",
 					onClose: function(){

@@ -2,7 +2,7 @@
 
 specVersion: "2.5"
 metadata:
-  name: NAMESPACE.zcashclose
+  name: GASS.zcashquerymovements
 type: application
 framework:
   name: SAPUI5
@@ -45,5 +45,5 @@ server:
     - name: fiori-tools-preview
       afterMiddleware: fiori-tools-appreload
       configuration:
-        component: NAMESPACE.zcashclose
+        component: GASS.zcashquerymovements
         ui5Theme: sap_fiori_3

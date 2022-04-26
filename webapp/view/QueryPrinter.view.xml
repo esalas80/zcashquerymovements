@@ -1,0 +1,136 @@
+<mvc:View
+    controllerName="GASS.zcashquerymovements.controller.QueryPrinter"
+		height="100%"
+		xmlns:core="sap.ui.core"
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns="sap.m"
+    	xmlns:u="sap.ui.unified"
+		xmlns:t="sap.ui.table"
+		xmlns:semantic="sap.m.semantic"
+		xmlns:layout="sap.ui.layout"
+		displayBlock="true">
+
+    <semantic:FullscreenPage title="{i18n>Movements}" showNavButton="true" navButtonPress="onNavBack">
+        <semantic:content>
+			<layout:BlockLayout background="Shared" visible="true" >
+				<layout:content>
+					<layout:BlockLayoutRow  scrollable="false"  title="Detalle de Saldos">
+						<layout:BlockLayoutCell   backgroundColorSet="ColorSet6" backgroundColorShade="ShadeD" >
+							<t:Table id="tblMovimientos" rows="{ path: 'MovimientosModel>/', sorter: { path: 'Indice', descending: true } }" selectionMode="None"
+								rowActionCount="1" class="sapUiTinyMarginBottom" rowSelectionChange=".onPress" visibleRowCount="10"
+								ariaLabelledBy="title">
+								<t:extension>
+									<OverflowToolbar>
+										<content>
+											<Title text="" titleStyle="Auto" width="auto" textAlign="Begin" visible="true" wrapping="false" id="titleTableNoStock"/>
+										</content>
+										<ToolbarSpacer/>
+										<SearchField placeholder="Buscar" showSearchButton="true" visible="true" width="283px" search="_onSearchFieldLiveChange"/>
+										<Button press="downloadExcel" id="btnNoStockDownloadExcel" icon="sap-icon://excel-attachment" tooltip="{i18n>btnExcel}" type="Accept"/>
+									</OverflowToolbar>
+								</t:extension>
+								<t:columns>
+									<t:Column sortProperty="Indice" filterProperty="Indice" width="4rem">
+										<Label text="{i18n>Ind}"/>
+										<t:template>
+											<Text text="{MovimientosModel>Indice}" wrapping="false"/>
+										</t:template>
+									</t:Column>
+									<t:Column sortProperty="Caja" filterProperty="Caja" width="7rem">
+										<Label text="{i18n>Caja}"/>
+										<t:template>
+											<Text text="{MovimientosModel>CajeroSecuencia}" wrapping="false"/>
+										</t:template>
+									</t:Column>
+									<t:Column sortProperty="Operacion" filterProperty="Operacion" width="8rem">
+										<Label text="{i18n>Oper}"/>
+										<t:template>
+											<Text text="{MovimientosModel>Operacion}" wrapping="false"/>
+										</t:template>
+									</t:Column>
+									<t:Column sortProperty="Cliente" filterProperty="Cliente" width="7rem">
+										<Label text="{i18n>Cli}"/>
+										<t:template>
+											<Text text="{MovimientosModel>Cliente}" wrapping="false"/>
+										</t:template>
+									</t:Column>
+									<t:Column sortProperty="ViaPago" filterProperty="ViaPago" width="5rem">
+										<Label text="{i18n>ViaPag}"/>
+										<t:template>
+											<Text text="{MovimientosModel>ViaPago}" wrapping="false"/>
+										</t:template>
+									</t:Column>
+									<t:Column sortProperty="ReferenciaPago" filterProperty="ReferenciaPago" width="7rem">
+										<Label text="{i18n>RefPag}"/>
+										<t:template>
+											<Text text="{MovimientosModel>ReferenciaPago}" wrapping="false"/>
+										</t:template>
+									</t:Column>
+									<t:Column sortProperty="ImporteMoneda" filterProperty="ImporteMoneda" width="5rem">
+										<Label text="{i18n>Moneda}"/>
+										<t:template>
+												<Text text="{MovimientosModel>ImporteMoneda}" wrapping="false"/>
+										</t:template>
+									</t:Column>
+									<t:Column sortProperty="Importe" filterProperty="Importe" width="8rem">
+										<Label text="{i18n>Importe}"/>
+										<t:template>
+												<u:Currency value="{
+													path: 'MovimientosModel>Importe',
+													type: 'sap.ui.model.type.String'
+												}" />
+										</t:template>
+									</t:Column>
+									<t:Column sortProperty="Documento" filterProperty="Documento" width="7rem">
+										<Label text="{i18n>noDocto}"/>
+										<t:template>
+											<Text text="{MovimientosModel>Documento}" wrapping="false"/>
+										</t:template>
+									</t:Column>
+									<t:Column sortProperty="FechaContabilizacion" filterProperty="FechaContabilizacion" width="7rem">
+										<Label text="{i18n>fecCont}"/>
+										<t:template>
+											<Text text="{MovimientosModel>FechaConta}" wrapping="false"/>
+										</t:template>
+									</t:Column>
+									<t:Column sortProperty="FechaDoc" filterProperty="FechaDoc" width="7rem">
+										<Label text="{i18n>FechDocto}"/>
+										<t:template>
+											<Text text="{MovimientosModel>FechaDoc}" wrapping="false"/>
+										</t:template>
+									</t:Column>
+									<t:Column sortProperty="BancoCajero" filterProperty="BancoCajero" width="7rem">
+										<Label text="{i18n>Banco}"/>
+										<t:template>
+											<Text text="{MovimientosModel>BancoCajero}" wrapping="false"/>
+										</t:template>
+									</t:Column>
+									<t:Column sortProperty="CuentaBancaria" filterProperty="CuentaBancaria" width="7rem">
+										<Label text="{i18n>ctaBanc}"/>
+										<t:template>
+											<Text text="{MovimientosModel>CuentaBancaria}" wrapping="false"/>
+										</t:template>
+									</t:Column>
+									
+									<t:Column sortProperty="ClaveAutorizacion" filterProperty="ClaveAutorizacion" width="7rem">
+										<Label text="{i18n>cvAut}"/>
+										<t:template>
+											<Text text="{MovimientosModel>ClaveAutorizacion}" wrapping="false"/>
+										</t:template>
+									</t:Column>
+									<t:Column sortProperty="Pagador" filterProperty="Pagador" width="7rem">
+										<Label text="{i18n>Pagador}"/>
+										<t:template>
+											<Text text="{MovimientosModel>Pagador}" wrapping="false"/>
+										</t:template>
+									</t:Column>
+								</t:columns>
+							</t:Table>
+						</layout:BlockLayoutCell>
+					</layout:BlockLayoutRow>	
+				</layout:content>
+			</layout:BlockLayout>
+					
+        </semantic:content>
+    </semantic:FullscreenPage>
+</mvc:View>

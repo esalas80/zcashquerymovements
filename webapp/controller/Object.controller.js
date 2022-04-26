@@ -9,7 +9,7 @@ sap.ui.define([
 ], function (BaseController, JSONModel, History, formatter, Dialog, Fragment,DialogCloseCash) {
     "use strict";
 
-    return BaseController.extend("NAMESPACE.zcashclose.controller.Object", {
+    return BaseController.extend("GASS.zcashquerymovements.controller.Object", {
 
         formatter: formatter,
 
@@ -44,11 +44,14 @@ sap.ui.define([
             filters.push({name:"Usuario", values:[userdata.Usuario]});
             var vexpand = "NavIngresos,NavMovimientos"
             var data = await  this._GEToDataV2ajaxComp(oModel,entity, filters, vexpand,"")
-            if(data.d.results){
+            if(data.d.results.length > 0){
                 var anio  = data.d.results[0].Fecha.substring(0,4);
                 var mes  = data.d.results[0].Fecha.substring(4,6);
                 var dia  = data.d.results[0].Fecha.substring(6,8);
                 var toDay = dia +"-" + mes + "-" +anio ;
+                userdata.Fecha=anio +"-"+mes+"-"+dia;
+                sessionStorage.removeItem("UserItems");
+                sessionStorage.setItem("UserItems", JSON.stringify(userdata));
                 data.d.results[0].FechaFact = toDay;
                 if(data.d.results[0].NavIngresos.results.length > 0){ 
                     var sumImporte =0.00 ; 
@@ -123,7 +126,7 @@ sap.ui.define([
             var oViewModel = this.getModel("objectView");
         },
         /**
-         * Método para abrir modal de cierre de caja 
+         * Método para abrir modal de Consulta de movimientos 
          */
         _onClosingCash:function(){
             var sDialogName = "DialogCloseCash";
@@ -133,12 +136,18 @@ sap.ui.define([
 				oDialog = new DialogCloseCash(this.oView);
 				this.mDialogs[sDialogName]=oDialog;
 				oDialog.setRouter(this.oRouter);
-				this._oDialog = sap.ui.xmlfragment("NAMESPACE.zcashclose.view.DialogCloseCash", this);
+				this._oDialog = sap.ui.xmlfragment("GASS.zcashquerymovements.view.DialogCloseCash", this);
 				this.getView().addDependent(this._oDialog);	
                 
 			}
             oDialog.open();
            
+        },
+        _onGetQueryPrint:function(){
+            this.getRouter().navTo("queryprinter");
+        },
+        _onViewDoc:function(){
+            this.getRouter().navTo("documents");
         }
     });
 

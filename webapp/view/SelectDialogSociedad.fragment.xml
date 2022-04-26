@@ -1,0 +1,9 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+
+	<SelectDialog id="SelectDialog_Soc" noDataText="No se encontraron sociedades" title="Sociedades" search="handleSearchSociedad"
+		confirm="handleValueSocHelppress" cancel="handleValueSocHelppress" items="{path:'catSociedad>/', sorter : {path : 'Bukrs'}}"
+		busy="{test>/busyDialog}">
+		<StandardListItem icon="sap-icon://building" title="{catSociedad>Butxt}" description="" info="{catSociedad>Bukrs}" />
+	</SelectDialog>
+
+</core:FragmentDefinition>

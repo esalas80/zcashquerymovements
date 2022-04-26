@@ -1,5 +1,5 @@
 <mvc:View
-    controllerName="NAMESPACE.zcashclose.controller.Object"
+    controllerName="GASS.zcashquerymovements.controller.Object"
 	xmlns:m="sap.m"
 	xmlns:mvc="sap.ui.core.mvc"
     xmlns:u="sap.ui.unified"
@@ -80,7 +80,7 @@
 							</form:SimpleForm>	
                             <form:SimpleForm editable="true"   adjustLabelSpan="true"  singleContainerFullSize="true">
                                 <form:content>
-                                    <m:Button text="{i18n>printQuery}" icon="sap-icon://print" type="Emphasized" iconFirst="true" width="50%" enabled="true" visible="true" iconDensityAware="false" press="_onButtonPress1"/>
+                                    <m:Button text="{i18n>printQuery}" icon="sap-icon://print" type="Emphasized" iconFirst="true" width="50%" enabled="true" visible="true" iconDensityAware="false" press="_onGetQueryPrint"/>
                                 </form:content>
                             </form:SimpleForm>
 						</layout:BlockLayoutCell>
@@ -170,6 +170,12 @@
 											<m:Text text="{cajaModel>Indice}" wrapping="false"/>
 										</t:template>
 									</t:Column>
+									<t:Column sortProperty="Documento" filterProperty="Documento" width="8rem">
+										<m:Label text="{i18n>noDocto}"/>
+										<t:template>
+											<m:Button icon="sap-icon://batch-payments" tooltip="Ver Documentos" text="{cajaModel>Documento}" visible="true" type="Transparent" press="_onViewDoc"/>
+										</t:template>
+									</t:Column>
                                     <t:Column sortProperty="Caja" filterProperty="Caja" width="5rem">
 										<m:Label text="{i18n>Caja}"/>
 										<t:template>
@@ -215,12 +221,7 @@
                                                 }" />
 										</t:template>
 									</t:Column>
-									<t:Column sortProperty="Documento" filterProperty="Documento" width="7rem">
-										<m:Label text="{i18n>noDocto}"/>
-										<t:template>
-											<m:Text text="{cajaModel>Documento}" wrapping="false"/>
-										</t:template>
-									</t:Column>
+									
 									<t:Column sortProperty="FechaContabilizacion" filterProperty="FechaContabilizacion" width="7rem">
 										<m:Label text="{i18n>fecCont}"/>
 										<t:template>
