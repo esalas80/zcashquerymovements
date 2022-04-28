@@ -12,7 +12,7 @@ sap.ui.define([
     // shortcut for sap.m.URLHelper
     var URLHelper = mobileLibrary.URLHelper;
 
-    return Controller.extend("GASS.zcashquerymovements.controller.BaseController", {
+    return Controller.extend("GASS.zcashqmovements.controller.BaseController", {
         /**
          * Convenience method for accessing the router.
          * @public
@@ -114,7 +114,7 @@ sap.ui.define([
 				});
 			});
 		},
-        _GEToDataV2ajaxComp: function(model, entity, filter, expand, select) {
+        _GEToDataV2ajaxComp: function(model, entity, filter, expand, select, language="") {
 			var that = this;
 			var urlAux = new Array();
 			var modelURL = model.sServiceUrl;
@@ -157,9 +157,13 @@ sap.ui.define([
 				}
 				queryOptions = queryOptions.slice(0, -1);
 			}
-
-			var sUrl = environmentSrc + modelURL + entityADD + queryOptions;
 			
+			var metadataParams=""
+			if(language !== "" ){
+				metadataParams = "&sap-language='"+language+"'";
+				
+			}
+			var sUrl = environmentSrc + modelURL + entityADD + queryOptions + metadataParams;
 			return new Promise(function(fnResolve, fnReject){
 				$.ajax({
 					url: sUrl,

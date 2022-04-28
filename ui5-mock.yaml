@@ -2,7 +2,7 @@
 
 specVersion: "2.5"
 metadata:
-  name: GASS.zcashquerymovements
+  name: GASS.zcashqmovements
 type: application
 server:
   customMiddleware:

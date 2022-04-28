@@ -40,7 +40,7 @@ sap.ui.define([
 								"tileType": "sap.ushell.ui.tile.StaticTile",
 								"properties": {
 									"title": "Consulta de movimientos",
-									"targetURL": "#NAMESPACEzcashquerymovements-display"
+									"targetURL": "#NAMESPACEzcashqmovements-display"
 								}
 							}]
 						}]
@@ -51,8 +51,8 @@ sap.ui.define([
 				"adapter": {
 					"config": {
 						"inbounds": {
-							"NAMESPACEzcashquerymovements-display": {
-								"semanticObject": "NAMESPACEzcashquerymovements",
+							"NAMESPACEzcashqmovements-display": {
+								"semanticObject": "NAMESPACEzcashqmovements",
 								"action": "display",
 								"description": "A Fiori application to cash close operations",
 								"title": "Consulta de movimientos",
@@ -61,8 +61,8 @@ sap.ui.define([
 								},
 								"resolutionResult": {
 									"applicationType": "SAPUI5",
-									"additionalInformation": "SAPUI5.Component=GASS.zcashquerymovements",
-									"url": sap.ui.require.toUrl("NAMESPACE/zcashquerymovements")
+									"additionalInformation": "SAPUI5.Component=GASS.zcashqmovements",
+									"url": sap.ui.require.toUrl("NAMESPACE/zcashqmovements")
 								}
 							}
 						}

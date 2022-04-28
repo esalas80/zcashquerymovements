@@ -3,7 +3,7 @@ sap.ui.define([
 ], function (BaseController) {
     "use strict";
 
-    return BaseController.extend("GASS.zcashquerymovements.controller.App", {
+    return BaseController.extend("GASS.zcashqmovements.controller.App", {
 
         onInit : function () {
             // apply content density mode to root view

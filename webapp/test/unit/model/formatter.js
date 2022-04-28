@@ -1,7 +1,7 @@
 /*global QUnit*/
 
 sap.ui.define([
-	"NAMESPACE/zcashquerymovements/model/formatter"
+	"NAMESPACE/zcashqmovements/model/formatter"
 ], function (formatter) {
 	"use strict";
 

@@ -1,5 +1,5 @@
 <mvc:View
-    controllerName="GASS.zcashquerymovements.controller.App"
+    controllerName="GASS.zcashqmovements.controller.App"
     displayBlock="true"
     xmlns="sap.m"
     xmlns:mvc="sap.ui.core.mvc">

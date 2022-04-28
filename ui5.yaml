@@ -2,7 +2,7 @@
 
 specVersion: "2.5"
 metadata:
-  name: GASS.zcashquerymovements
+  name: GASS.zcashqmovements
 type: application
 server:
   customMiddleware:
@@ -28,5 +28,5 @@ server:
     - name: fiori-tools-preview
       afterMiddleware: fiori-tools-appreload
       configuration:
-        component: GASS.zcashquerymovements
+        component: GASS.zcashqmovements
         ui5Theme: sap_fiori_3

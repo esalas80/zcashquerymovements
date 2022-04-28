@@ -1,5 +1,5 @@
 <mvc:View
-    controllerName="GASS.zcashquerymovements.controller.Documents"
+    controllerName="GASS.zcashqmovements.controller.Documents"
     height="100%"
     xmlns="sap.uxap"
     xmlns:m="sap.m"
@@ -17,13 +17,13 @@
         <headerTitle>
             	<ObjectPageDynamicHeaderTitle>
                     <expandedHeading>
-                        <m:Title text="Documento: 0000047851" wrapping="true"/>
+                        <m:Title id="pageTitle" text="{i18n>expandTitle}" wrapping="true"/>
                     </expandedHeading>
                     <snappedHeading>
                         <m:FlexBox fitContainer="true" alignItems="Center">
                             <!-- <m:Avatar src="./test-resources/sap/uxap/images/imageID_275314.png" class="sapUiTinyMarginEnd"/>
                             <m:Title text="Denise Smith" wrapping="true" /> -->
-                             <m:Title text="Documento: 0000047851" wrapping="true"/>
+                             <m:Title id="snappedTitle" text="{i18n>expandTitle}" wrapping="true"/>
                         </m:FlexBox>
                     </snappedHeading>
                    
@@ -38,168 +38,158 @@
         </headerTitle>
 
        	<headerContent>
-			<m:FlexBox wrap="Wrap" fitContainer="true" >
-				<!-- <m:Avatar class="sapUiSmallMarginEnd" src="./test-resources/sap/uxap/images/imageID_275314.png" displaySize="L" />
+			
+				<layout:BlockLayout background="Mixed" visible="true">
+					<layout:BlockLayoutRow scrollable="false">
+						<layout:BlockLayoutCell   backgroundColorSet="ColorSet6" backgroundColorShade="ShadeE">
+							<m:FlexBox wrap="Wrap" fitContainer="true" >
+								<layout:VerticalLayout class="sapUiResponsiveContentPadding">
+									<m:Label text="{i18n>noDocto}"  width="auto"/>
+									<m:VBox>
+										<m:Label text="{detailModel>/Documento}" design="Bold" width="auto"/>
+									</m:VBox>
 
-				<layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
-					<m:Link text="+33 6 4512 5158"/>
-					<m:Link text="DeniseSmith@sap.com"/>
-				</layout:VerticalLayout> -->
+									<m:Label text="{i18n>Period}"  width="auto"/>
+									<m:VBox>
+										<m:Label text="{detailModel>/Periodo}" design="Bold" width="auto"/>
+									</m:VBox>
+								</layout:VerticalLayout>
 
-				<!-- <layout:HorizontalLayout class="sapUiSmallMarginBeginEnd">
-					<m:Image src="./test-resources/sap/uxap/images/linkedin.png"/>
-					<m:Image src="./test-resources/sap/uxap/images/Twitter.png" class="sapUiSmallMarginBegin"/>
-				</layout:HorizontalLayout> -->
+								<layout:VerticalLayout class="sapUiResponsiveContentPadding">
+									<m:Label text="{i18n>Socieda}" />
+									<m:VBox>
+										<m:Label text="{detailModel>/Sociedad}" design="Bold"/>
+									</m:VBox>
 
-				<layout:VerticalLayout class="sapUiResponsiveContentPadding">
-					<m:Label text="{i18n>noDocto}" design="Bold" width="auto"/>
-					<m:VBox>
-						<m:Label text="0000047851" width="auto"/>
-					</m:VBox>
+									<m:Label text="{i18n>ref}" />
+									<m:VBox>
+										<m:Label text="{detailModel>/Referencia}" design="Bold"/>
+									</m:VBox>
+								</layout:VerticalLayout>
+								<layout:VerticalLayout class="sapUiResponsiveContentPadding">
+									<m:Label text="{i18n>Ejercicio} "  width="auto" textAlign="End" />
+									<m:VBox>
+										<m:Label text="{detailModel>/Ejercicio}" design="Bold" />
+									</m:VBox>
 
-                    <m:Label text="{i18n>Period}" design="Bold" width="auto"/>
-					<m:VBox>
-						<m:Label text="4" width="auto"/>
-					</m:VBox>
-				</layout:VerticalLayout>
+									<m:Label text="{i18n>NumGen} "  width="auto" textAlign="End"  />
+									<m:VBox>
+										<m:Label text="{detailModel>/NumeroGeneral}" design="Bold"/>
+									</m:VBox>
+								</layout:VerticalLayout>
+								<layout:VerticalLayout class="sapUiResponsiveContentPadding">
+									<m:Label text="{i18n>FecDocto} "  width="auto" textAlign="End"/>
+									<m:VBox>
+										<m:Label text="{detailModel>/FechaDocto}" design="Bold"/>
+									</m:VBox>
 
-				<layout:VerticalLayout class="sapUiResponsiveContentPadding">
-					<m:Label text="{i18n>Socieda}" design="Bold"/>
-                    <m:VBox>
-						<m:Label text="4200"/>
-					</m:VBox>
+									<m:Label text="{i18n>Moneda} "  width="auto" textAlign="End" />
+									<m:VBox>
+										<m:Label text="{detailModel>/Moneda}" design="Bold"/>
+									</m:VBox>
+								</layout:VerticalLayout>
+								<layout:VerticalLayout class="sapUiResponsiveContentPadding">
+									<m:Label text="{i18n>FechaCont} "  width="auto" textAlign="End" />
+									<m:VBox>
+										<m:Label text="{detailModel>/FechaConta}" design="Bold"/>
+									</m:VBox>
 
-                    <m:Label text="{i18n>ref}" design="Bold"/>
-                    <m:VBox>
-						<m:Label text=""/>
-					</m:VBox>
-				</layout:VerticalLayout>
-                <layout:VerticalLayout class="sapUiResponsiveContentPadding">
-					<m:Label text="{i18n>Ejercicio} "  width="auto" textAlign="End" design="Bold" />
-                    <m:VBox>
-						<m:Label text="2022"/>
-					</m:VBox>
-
-                    <m:Label text="{i18n>NumGen} "  width="auto" textAlign="End"  design="Bold"/>
-                    <m:VBox>
-						<m:Label text=""/>
-					</m:VBox>
-				</layout:VerticalLayout>
-                	<layout:VerticalLayout class="sapUiResponsiveContentPadding">
-					<m:Label text="{i18n>FecDocto} "  width="auto" textAlign="End" design="Bold"/>
-					 <m:VBox>
-						<m:Label text="04-22-2022"/>
-					</m:VBox>
-				</layout:VerticalLayout>
-                <layout:VerticalLayout class="sapUiResponsiveContentPadding">
-					<m:Label text="{i18n>FechaCont} "  width="auto" textAlign="End" design="Bold"/>
-					 <m:VBox>
-						<m:Label text="04-22-2022"/>
-					</m:VBox>
-				</layout:VerticalLayout>
-			</m:FlexBox>
+									<m:Label text="{i18n>GroupLeg} "  width="auto" textAlign="End" />
+									<m:VBox>
+										<m:Label text="{detailModel>/GrupoLegers}" design="Bold"/>
+									</m:VBox>
+								</layout:VerticalLayout>
+							</m:FlexBox>
+						</layout:BlockLayoutCell> 
+					</layout:BlockLayoutRow>
+				</layout:BlockLayout>
+			
 		</headerContent>
         <sections>
             <ObjectPageSection titleUppercase="false" title="Table information">
                 <subSections>
                     <ObjectPageSubSection title="Movimientos" titleUppercase="false">
-                        <t:Table id="table" rows="{ path: 'cajaModel>/0/NavMovimientos/results', sorter: { path: 'Indice', descending: true } }" selectionMode="None"
+                        <t:Table id="table" rows="{ path: 'movementsModel>/results', sorter: { path: 'Indice', descending: true } }" selectionMode="None"
 								rowActionCount="1" class="sapUiTinyMarginBottom"  visibleRowCount="5"
 								ariaLabelledBy="title">
 								
 								<t:columns>
-                                    <t:Column sortProperty="Indice" filterProperty="Indice" width="4rem">
+                                    <t:Column sortProperty="Posicion" filterProperty="Posicion" width="4rem">
 										<m:Label text="{i18n>Ind}"/>
 										<t:template>
-											<m:Text text="{cajaModel>Indice}" wrapping="false"/>
+											<m:Text text="{movementsModel>Posicion}" wrapping="false"/>
+										</t:template>
+									</t:Column>
+									<t:Column sortProperty="ClaveContabilizacion" filterProperty="ClaveContabilizacion" width="5rem">
+										<m:Label text="{i18n>CvCont}"/>
+										<t:template>
+											<m:Text text="{movementsModel>ClaveContabilizacion}" wrapping="false"/>
 										</t:template>
 									</t:Column>
 									<t:Column sortProperty="Documento" filterProperty="Documento" width="8rem">
 										<m:Label text="{i18n>noDocto}"/>
 										<t:template>
-											<m:Button icon="sap-icon://batch-payments" tooltip="Ver Documentos" text="{cajaModel>Documento}" visible="true" type="Transparent" press="_onViewDoc"/>
+											<m:Text text="{movementsModel>Documento}" wrapping="false"/>
 										</t:template>
 									</t:Column>
-                                    <t:Column sortProperty="Caja" filterProperty="Caja" width="5rem">
-										<m:Label text="{i18n>Caja}"/>
+                                    <t:Column sortProperty="Segmento" filterProperty="Segmento" width="6rem">
+										<m:Label text="{i18n>Segmento}"/>
 										<t:template>
-											<m:Text text="{cajaModel>Caja}" wrapping="false"/>
+											<m:Text text="{movementsModel>Segmento}" wrapping="false"/>
 										</t:template>
 									</t:Column>
-									<t:Column sortProperty="Operacion" filterProperty="Operacion" width="8rem">
-										<m:Label text="{i18n>Oper}"/>
+									<t:Column sortProperty="Cuenta" filterProperty="Cuenta" width="8rem">
+										<m:Label text="{i18n>Cuenta}"/>
 										<t:template>
-											<m:Text text="{cajaModel>Operacion}" wrapping="false"/>
+											<m:Text text="{movementsModel>Cuenta}" wrapping="false"/>
 										</t:template>
 									</t:Column>
-									<t:Column sortProperty="Cliente" filterProperty="Cliente" width="7rem">
-										<m:Label text="{i18n>Cli}"/>
+									<t:Column sortProperty="Denominacion" filterProperty="Denominacion" width="7rem">
+										<m:Label text="{i18n>Denom}"/>
 										<t:template>
-											<m:Text text="{cajaModel>Cliente}" wrapping="false"/>
-										</t:template>
-									</t:Column>
-                                    <t:Column sortProperty="ViaPago" filterProperty="ViaPago" width="4rem">
-										<m:Label text="{i18n>ViaPag}"/>
-										<t:template>
-											<m:Text text="{cajaModel>ViaPago}" wrapping="false"/>
-										</t:template>
-									</t:Column>
-									<t:Column sortProperty="ReferenciaPago" filterProperty="ReferenciaPago" width="7rem">
-										<m:Label text="{i18n>RefPag}"/>
-										<t:template>
-											<m:Text text="{cajaModel>ReferenciaPago}" wrapping="false"/>
-										</t:template>
-									</t:Column>
-									<t:Column sortProperty="ImporteMoneda" filterProperty="ImporteMoneda" width="8rem">
-										<m:Label text="{i18n>Moneda}"/>
-										<t:template>
-												<m:Text text="{cajaModel>ImporteMoneda}" wrapping="false"/>
+											<m:Text text="{movementsModel>Denominacion}" wrapping="false"/>
 										</t:template>
 									</t:Column>
 									<t:Column sortProperty="Importe" filterProperty="Importe" width="8rem">
 										<m:Label text="{i18n>Importe}"/>
 										<t:template>
 												<u:Currency value="{
-                                                    path: 'cajaModel>Importe',
+                                                    path: 'movementsModel>Importe',
                                                     type: 'sap.ui.model.type.String'
                                                 }" />
 										</t:template>
 									</t:Column>
-									
-									<t:Column sortProperty="FechaContabilizacion" filterProperty="FechaContabilizacion" width="7rem">
-										<m:Label text="{i18n>fecCont}"/>
+									<t:Column sortProperty="Importe" filterProperty="Importe" width="8rem">
+										<m:Label text="{i18n>ImporteRet}"/>
 										<t:template>
-											<m:Text text="{cajaModel>FechaCont}" wrapping="false"/>
+												<u:Currency value="{
+                                                    path: 'movementsModel>ImporteRet',
+                                                    type: 'sap.ui.model.type.String'
+                                                }" />
 										</t:template>
 									</t:Column>
-									<t:Column sortProperty="ClaveReferencia" filterProperty="ClaveReferencia" width="7rem">
-										<m:Label text="{i18n>clvRef}"/>
+                                    <t:Column sortProperty="Asignacion" filterProperty="Asignacion" width="10rem">
+										<m:Label text="{i18n>Asig}"/>
 										<t:template>
-											<m:Text text="{cajaModel>ClaveReferencia}" wrapping="false"/>
+											<m:Text text="{movementsModel>Asignacion}" wrapping="false"/>
 										</t:template>
 									</t:Column>
-									<t:Column sortProperty="Cuenta" filterProperty="Cuenta" width="7rem">
-										<m:Label text="{i18n>ctaBanc}"/>
+									<t:Column sortProperty="Texto" filterProperty="Texto" width="7rem">
+										<m:Label text="{i18n>Text}"/>
 										<t:template>
-											<m:Text text="{cajaModel>Cuenta}" wrapping="false"/>
+											<m:Text text="{movementsModel>Texto}" wrapping="false"/>
 										</t:template>
 									</t:Column>
-                                    <t:Column sortProperty="FechaVen" filterProperty="FechaVen" width="7rem">
-										<m:Label text="{i18n>fecVenc}"/>
+									<t:Column sortProperty="CentroGestor" filterProperty="CentroGestor" width="8rem">
+										<m:Label text="{i18n>CentGest}"/>
 										<t:template>
-											<m:Text text="{cajaModel>FechaVen}" wrapping="false"/>
+												<m:Text text="{movementsModel>CentroGestor}" wrapping="false"/>
 										</t:template>
 									</t:Column>
-                                    <t:Column sortProperty="ClaveAutorizacion" filterProperty="ClaveAutorizacion" width="7rem">
-										<m:Label text="{i18n>cvAut}"/>
+									<t:Column sortProperty="CentroCoste" filterProperty="CentroCoste" width="8rem">
+										<m:Label text="{i18n>CentCost}"/>
 										<t:template>
-											<m:Text text="{cajaModel>ClaveAutorizacion}" wrapping="false"/>
-										</t:template>
-									</t:Column>
-                                    <t:Column sortProperty="Pagador" filterProperty="Pagador" width="7rem">
-										<m:Label text="{i18n>Pagador}"/>
-										<t:template>
-											<m:Text text="{cajaModel>Pagador}" wrapping="false"/>
+												<m:Text text="{movementsModel>CentroCoste}" wrapping="false"/>
 										</t:template>
 									</t:Column>
 								</t:columns>

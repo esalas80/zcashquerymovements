@@ -5,7 +5,7 @@ sap.ui.getCore().attachInit(function () {
 	"use strict";
 
 	sap.ui.require([
-		"NAMESPACE/zcashquerymovements/test/unit/AllTests"
+		"NAMESPACE/zcashqmovements/test/unit/AllTests"
 	], function () {
 		QUnit.start();
 	});

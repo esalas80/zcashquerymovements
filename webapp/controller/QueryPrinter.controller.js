@@ -9,7 +9,7 @@ sap.ui.define([
 	"sap/ui/model/FilterOperator"
 ], function (BaseController, JSONModel, History, formatter, Dialog, Fragment, Filter, FilterOperator) {
     "use strict"
-    return BaseController.extend("GASS.zcashquerymovements.controller.QueryPrinter", {
+    return BaseController.extend("GASS.zcashqmovements.controller.QueryPrinter", {
         formatter: formatter,
         onInit : function () {
             // Model used to manipulate control states. The chosen values make sure,

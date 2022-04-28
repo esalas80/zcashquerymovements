@@ -11,7 +11,7 @@ sap.ui.define([
 ], function (BaseController, JSONModel, formatter, Filter, FilterOperator, Fragment, MessageBox, Token, Dialog) {
     "use strict";
 
-    return BaseController.extend("GASS.zcashquerymovements.controller.Worklist", {
+    return BaseController.extend("GASS.zcashqmovements.controller.Worklist", {
 
         formatter: formatter,
 
@@ -20,17 +20,13 @@ sap.ui.define([
             // Model used to manipulate control states
             oViewModel = new JSONModel({});
             this.setModel(oViewModel, "worklistView");
-
+			sap.ui.getCore().getConfiguration().setLanguage("es-MX");
         },
         /**
          * Event handler when a table item gets pressed
          * @param {sap.ui.base.Event} oEvent the table selectionChange event
          * @public
          */
-        onPress : function (oEvent) {
-            // The source is the list item that got pressed
-            this._showObject(oEvent.getSource());
-        },
 
         /**
          * Event handler for navigating back.
@@ -59,7 +55,7 @@ sap.ui.define([
         /*================================================================*
          * Método para hacer login para cierre de operaciones de caja  
          =================================================================*/
-        _onLoginClosingCash:function(){
+        _onLoginClosingCash: async function(){
             var that = this;
             var sociedad = this.getView().byId("help_Society").getValue(); 
 			var segmento = this.getView().byId("help_Div").getValue(); 
@@ -70,11 +66,12 @@ sap.ui.define([
             segmento = segmento === ""? this.getView().byId("help_Div").getTokens().length > 0 ?  this.getView().byId("help_Div").getTokens()[0].getKey() : "" :segmento;
             caja = caja ===""? this.getView().byId("help_Caja").getTokens().length > 0 ?  this.getView().byId("help_Caja").getTokens()[0].getKey() : "":caja;
             
-            if(sociedad === "" || segmento === "" || caja === "" || usuario === ""){
+            if(sociedad === "" || segmento === "" || caja === "" || usuario === "" || dpFec ===""){
                 this.getView().byId("help_Society").setValueState("Error");
                 this.getView().byId("help_Div").setValueState("Error");
                 this.getView().byId("help_Caja").setValueState("Error");
                 this.getView().byId("idUser").setValueState("Error");
+				this.getView().byId("idDPFecha").setValueState("Error");
                 return;
             }
             else{
@@ -82,48 +79,77 @@ sap.ui.define([
                 this.getView().byId("help_Div").setValueState("None");
                 this.getView().byId("help_Caja").setValueState("None");
                 this.getView().byId("idUser").setValueState("None");
+				this.getView().byId("idDPFecha").setValueState("None");
             }
-            var destination = "/sap/opu/odata/sap/Z_CASHBOX_SRV/";
-            var modelo="ValidacionSociedadSet"
-            var query = "(Sociedad='"+ sociedad +"',Segmento='"+ segmento +"',Caja='"+caja+"',Usuario='"+ usuario +"')"
+            var entity="CierreCajaSet"
+            var filters=[];
+			var fecha = dpFec.replace(/-/g,"")
+            filters.push({name:"Segmento", values:[segmento]});
+            filters.push({name:"Sociedad", values:[sociedad]});
+            filters.push({name:"Caja", values:[caja]});
+            filters.push({name:"Fecha", values:[fecha]});
+			filters.push({name:"Usuario", values:[usuario]});
+            var vexpand = "NavIngresos,NavMovimientos"
+            var oModel=this.getView().getModel()
             sap.ui.core.BusyIndicator.show();
+            var data = await  this._GEToDataV2ajaxComp(oModel,entity, filters, vexpand,"");
             
-            this._getOdataV2Ajax(destination,modelo,query).then(function(data){
-                sap.ui.core.BusyIndicator.hide();
-                var resp = data.d;
-                if(sessionStorage.getItem("UserItems")){
-                    sessionStorage.removeItem("UserItems")
-                } 
-                sessionStorage.setItem("UserItems", JSON.stringify(resp))
+			sap.ui.core.BusyIndicator.hide();
+            var resp = data.d.results[0];
+			if(resp.NavMovimientos.results.length > 0){
+				if(sessionStorage.getItem("UserItems")){
+					sessionStorage.removeItem("UserItems")
+				} 
+				sessionStorage.setItem("UserItems", JSON.stringify(resp))
+				
+				this.getRouter().navTo("object", {
+					objectId: new Date().getMilliseconds().toString() + this.create_UUID().toString() + new Date().getMilliseconds().toString() + this.create_UUID().toString()
+				});
+			}else{
+				MessageBox.warning("No se encontro información de movimientos" , {
+					icon: MessageBox.Icon.WARNING,
+					title: "Sin Información"
+				});
+			}
+			
+			
+			
+			// this._getOdataV2Ajax(destination,modelo,query).then(function(data){
+            //     sap.ui.core.BusyIndicator.hide();
+            //     var resp = data.d;
+            //     if(sessionStorage.getItem("UserItems")){
+            //         sessionStorage.removeItem("UserItems")
+            //     } 
+            //     sessionStorage.setItem("UserItems", JSON.stringify(resp))
                 
-                this.getRouter().navTo("object", {
-                    objectId: new Date().getMilliseconds().toString() + this.create_UUID().toString() + new Date().getMilliseconds().toString() + this.create_UUID().toString()
-                });
+            //     this.getRouter().navTo("object", {
+            //         objectId: new Date().getMilliseconds().toString() + this.create_UUID().toString() + new Date().getMilliseconds().toString() + this.create_UUID().toString()
+            //     });
 
-                // if(resp.Codigo !== "3"){
-                //     if(sessionStorage.getItem("UserItems")){
-                //         sessionStorage.removeItem("UserItems")
-                //     } 
-                //     sessionStorage.setItem("UserItems", JSON.stringify(resp))
+            //     // if(resp.Codigo !== "3"){
+            //     //     if(sessionStorage.getItem("UserItems")){
+            //     //         sessionStorage.removeItem("UserItems")
+            //     //     } 
+            //     //     sessionStorage.setItem("UserItems", JSON.stringify(resp))
                     
-                //     this.getRouter().navTo("object", {
-                //         objectId: new Date().getMilliseconds().toString() + this.create_UUID().toString() + new Date().getMilliseconds().toString() + this.create_UUID().toString()
-                //     });
-                // }
-                // else{
-                //     MessageBox.error("Error:" + resp.Descripcion, {
-                //         icon: MessageBox.Icon.ERROR,
-                //         title: "Error"
-                //     });
-                // }
+            //     //     this.getRouter().navTo("object", {
+            //     //         objectId: new Date().getMilliseconds().toString() + this.create_UUID().toString() + new Date().getMilliseconds().toString() + this.create_UUID().toString()
+            //     //     });
+            //     // }
+            //     // else{
+            //     //     MessageBox.error("Error:" + resp.Descripcion, {
+            //     //         icon: MessageBox.Icon.ERROR,
+            //     //         title: "Error"
+            //     //     });
+            //     // }
                 
-            }.bind(this)).catch(function(err){
-                sap.ui.core.BusyIndicator.hide();
-                MessageBox.error("Error:", {
-                    icon: MessageBox.Icon.ERROR,
-                    title: "Error"
-                });
-            });
+            // }.bind(this)).catch(function(err){
+            //     sap.ui.core.BusyIndicator.hide();
+            //     MessageBox.error("Error:", {
+            //         icon: MessageBox.Icon.ERROR,
+            //         title: "Error"
+            //     });
+            // });
         },
         onLiveTextChange: function(oEvent){
             var input = oEvent.getSource();
@@ -156,7 +182,7 @@ sap.ui.define([
 				// load asynchronous XML fragment
 				Fragment.load({
 					id: oView.getId(),
-					name: "GASS.zcashquerymovements.view.SelectDialogSociedad",
+					name: "GASS.zcashqmovements.view.SelectDialogSociedad",
 					controller: that
 				}).then(function (oDialog) {
 					// connect dialog to the root view of this component (models, lifecycle)
@@ -252,7 +278,7 @@ sap.ui.define([
 				// load asynchronous XML fragment
 				Fragment.load({
 					id: oView.getId(),
-					name: "GASS.zcashquerymovements.view.SelectDialogSegmento",
+					name: "GASS.zcashqmovements.view.SelectDialogSegmento",
 					controller: that
 				}).then(function (oDialog) {
 					// connect dialog to the root view of this component (models, lifecycle)
@@ -341,7 +367,7 @@ sap.ui.define([
 				// load asynchronous XML fragment
 				Fragment.load({
 					id: oView.getId(),
-					name: "GASS.zcashquerymovements.view.SelectDialogCaja",
+					name: "GASS.zcashqmovements.view.SelectDialogCaja",
 					controller: that
 				}).then(function (oDialog) {
 					// connect dialog to the root view of this component (models, lifecycle)

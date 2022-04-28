@@ -1,5 +1,5 @@
 <mvc:View
-    controllerName="GASS.zcashquerymovements.controller.QueryPrinter"
+    controllerName="GASS.zcashqmovements.controller.QueryPrinter"
 		height="100%"
 		xmlns:core="sap.ui.core"
 		xmlns:mvc="sap.ui.core.mvc"

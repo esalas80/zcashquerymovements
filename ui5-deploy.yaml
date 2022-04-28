@@ -2,7 +2,7 @@
 
 specVersion: "2.5"
 metadata:
-  name: GASS.zcashquerymovements
+  name: GASS.zcashqmovements
 type: application
 builder:
   resources:
@@ -17,7 +17,7 @@ builder:
           url: http://10.2.8.124:8000
           client: "100"
         app:
-          name: zcashquerymovements
+          name: zcashqmovements
           description: Fori app to cash closing operations
           package: ZISH
           transport: DG1K902310

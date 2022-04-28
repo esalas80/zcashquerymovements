@@ -6,7 +6,7 @@ sap.ui.define([
 ], function (UIComponent, Device, models, ErrorHandler) {
     "use strict";
 
-    return UIComponent.extend("GASS.zcashquerymovements.Component", {
+    return UIComponent.extend("GASS.zcashqmovements.Component", {
 
         metadata : {
             manifest: "json"

@@ -9,7 +9,7 @@ sap.ui.define([
 ], function (BaseController, JSONModel, History, formatter, Dialog, Fragment,DialogCloseCash) {
     "use strict";
 
-    return BaseController.extend("GASS.zcashquerymovements.controller.Object", {
+    return BaseController.extend("GASS.zcashqmovements.controller.Object", {
 
         formatter: formatter,
 
@@ -81,7 +81,6 @@ sap.ui.define([
 
                     }
                 }
-                //console.log(data.d.results[0])
                 var closeCashModel = new sap.ui.model.json.JSONModel(data.d.results);
                 that.getView().setModel(closeCashModel,"cajaModel");
             }
@@ -136,7 +135,7 @@ sap.ui.define([
 				oDialog = new DialogCloseCash(this.oView);
 				this.mDialogs[sDialogName]=oDialog;
 				oDialog.setRouter(this.oRouter);
-				this._oDialog = sap.ui.xmlfragment("GASS.zcashquerymovements.view.DialogCloseCash", this);
+				this._oDialog = sap.ui.xmlfragment("GASS.zcashqmovements.view.DialogCloseCash", this);
 				this.getView().addDependent(this._oDialog);	
                 
 			}
@@ -146,7 +145,21 @@ sap.ui.define([
         _onGetQueryPrint:function(){
             this.getRouter().navTo("queryprinter");
         },
-        _onViewDoc:function(){
+        _onViewDoc:function(oEvent){
+            var dataRow = oEvent.getSource().getBindingContext("cajaModel").getObject();
+            var userdata = sessionStorage.getItem("UserItems") ? JSON.parse(sessionStorage.getItem("UserItems")) :  [];
+            var docDetail = {
+                NroDocumento : dataRow.Documento,
+                Fecha: userdata.Fecha,
+                Sociedad: userdata.Sociedad,
+                Segmento: userdata.Segmento,
+                Caja: userdata.Caja,
+                Ejercicio:dataRow.Ejercicio,
+                DetailRow: dataRow
+            } 
+            
+            let auxDetail = new sap.ui.model.json.JSONModel(docDetail);
+			sap.ui.getCore().setModel(auxDetail, "SelectedDocument");
             this.getRouter().navTo("documents");
         }
     });

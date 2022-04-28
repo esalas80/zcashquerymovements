@@ -1,7 +1,7 @@
 {
   "_version": "1.28.0",
   "sap.app": {
-    "id": "GASS.zcashquerymovements",
+    "id": "GASS.zcashqmovements",
     "type": "application",
     "i18n": "i18n/i18n.properties",
     "applicationVersion": {
@@ -61,7 +61,7 @@
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
-          "bundleName": "GASS.zcashquerymovements.i18n.i18n"
+          "bundleName": "GASS.zcashqmovements.i18n.i18n"
         }
       },
       "": {
@@ -77,7 +77,7 @@
       "config": {
         "routerClass": "sap.m.routing.Router",
         "viewType": "XML",
-        "viewPath": "GASS.zcashquerymovements.view",
+        "viewPath": "GASS.zcashqmovements.view",
         "controlId": "app",
         "controlAggregation": "pages",
         "bypassed": {
@@ -153,7 +153,7 @@
       }
     },
     "rootView": {
-      "viewName": "GASS.zcashquerymovements.view.App",
+      "viewName": "GASS.zcashqmovements.view.App",
       "type": "XML",
       "async": true,
       "id": "app"
