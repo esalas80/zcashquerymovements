@@ -3,7 +3,7 @@
   var fioriToolsGetManifestLibs = function (manifestPath) {
     var url = manifestPath;
     var result = "";
-    // SAPUI5 delivered namespaces from https://ui5.sap.com/#/api/sap
+    // SAPUI5 delivered GASSs from https://ui5.sap.com/#/api/sap
     var ui5Libs = [
       "sap.apf",
       "sap.base",
@@ -30,7 +30,7 @@
     ];
     function getKeys(libOrComp,libOrCompKeysString) {
       Object.keys(libOrComp).forEach(function (libOrCompKey) {
-        // ignore libs or Components that start with SAPUI5 delivered namespaces
+        // ignore libs or Components that start with SAPUI5 delivered GASSs
         if (!ui5Libs.some(function (substring) { return libOrCompKey === substring || libOrCompKey.startsWith(substring + "."); })) {
           if (libOrCompKeysString.length > 0) {
             libOrCompKeysString = libOrCompKeysString + "," + libOrCompKey;

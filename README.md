@@ -10,7 +10,7 @@
 |**Service URL**<br>http://10.2.8.124:8000/sap/opu/odata/sap/Z_CASHBOX_SRV
 |**Module Name**<br>zcashqmovements|
 |**Application Title**<br>Consulta de movimientos|
-|**Namespace**<br>NAMESPACE|
+|**GASS**<br>GASS|
 |**UI5 Theme**<br>sap_fiori_3|
 |**UI5 Version**<br>1.84.1|
 |**Enable Code Assist Libraries**<br>False|

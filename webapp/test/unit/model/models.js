@@ -1,7 +1,7 @@
 /*global QUnit*/
 
 sap.ui.define([
-	"NAMESPACE/zcashqmovements/model/models",
+	"GASS/zcashqmovements/model/models",
 	"sap/ui/Device"
 ], function (models, Device) {
 	"use strict";

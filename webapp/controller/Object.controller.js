@@ -146,6 +146,7 @@ sap.ui.define([
             this.getRouter().navTo("queryprinter");
         },
         _onViewDoc:function(oEvent){
+            sap.ui.core.BusyIndicator.show();
             var dataRow = oEvent.getSource().getBindingContext("cajaModel").getObject();
             var userdata = sessionStorage.getItem("UserItems") ? JSON.parse(sessionStorage.getItem("UserItems")) :  [];
             var docDetail = {
@@ -161,7 +162,17 @@ sap.ui.define([
             let auxDetail = new sap.ui.model.json.JSONModel(docDetail);
 			sap.ui.getCore().setModel(auxDetail, "SelectedDocument");
             this.getRouter().navTo("documents");
-        }
+        },
+
+        _onCodif:function(){
+            var cadena = "Hola neto"
+            var codif = this.string_to_hex(cadena)
+            console.log(codif)
+            var decodif = this.hex_to_string(codif);
+            console.log(decodif)
+        },
+
+       
     });
 
 });
