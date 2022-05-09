@@ -90,6 +90,16 @@ sap.ui.define([
                 day  = data.d.results[0].FechaRegistro.substring(6,8);
                 fec = day +"-"+ month +"-" + year;
                 data.d.results[0].FechaReg = fec;
+                if(data.d.results[0].NavDocDetalle.results.length > 0 ){
+                    data.d.results[0].NavDocDetalle.results.forEach(element => {
+                        debugger
+                        element.Importe = element.Importe.trim()
+                        var indexNeg = element.Importe.indexOf("-")
+                        if(indexNeg > 0) {
+                            element.Importe = -1 * (element.Importe.replace("-",""))
+                        }
+                    });
+                }
                 var detailModel = new sap.ui.model.json.JSONModel(data.d.results[0]);
                 var movementsModel = new sap.ui.model.json.JSONModel(data.d.results[0].NavDocDetalle);
                 this.getView().setModel(detailModel,"detailModel");

@@ -153,10 +153,7 @@
 									<t:Column sortProperty="Importe" filterProperty="Importe" width="8rem">
 										<m:Label text="{i18n>Importe}"/>
 										<t:template>
-												<u:Currency value="{
-                                                    path: 'movementsModel>Importe',
-                                                    type: 'sap.ui.model.type.String'
-                                                }" />
+											<m:Text text="{path: 'movementsModel>Importe', type: 'sap.ui.model.type.Float', formatOptions: { minFractionDigits: 2, maxFractionDigits: 2, groupingSeparator: ',', decimalSeparator: '.' } }" wrapping="false"/>
 										</t:template>
 									</t:Column>
 									<t:Column sortProperty="Importe" filterProperty="Importe" width="8rem">
