@@ -92,7 +92,6 @@ sap.ui.define([
                 data.d.results[0].FechaReg = fec;
                 if(data.d.results[0].NavDocDetalle.results.length > 0 ){
                     data.d.results[0].NavDocDetalle.results.forEach(element => {
-                        debugger
                         element.Importe = element.Importe.trim()
                         var indexNeg = element.Importe.indexOf("-")
                         if(indexNeg > 0) {
@@ -105,10 +104,6 @@ sap.ui.define([
                 this.getView().setModel(detailModel,"detailModel");
                 this.getView().setModel(movementsModel,"movementsModel");
             } 
-          
-            
-            
         }
-        
 	});
 });
