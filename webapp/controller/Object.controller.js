@@ -42,6 +42,7 @@ sap.ui.define([
             filters.push({name:"Sociedad", values:[userdata.Sociedad]});
             filters.push({name:"Caja", values:[userdata.Caja]});
             filters.push({name:"Usuario", values:[userdata.Usuario]});
+            filters.push({name:"Fecha", values:[userdata.Fecha.replace(/-/g,"")]});
             var vexpand = "NavIngresos,NavMovimientos"
             var data = await  this._GEToDataV2ajaxComp(oModel,entity, filters, vexpand,"")
             if(data.d.results.length > 0){
