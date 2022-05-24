@@ -340,7 +340,8 @@ sap.ui.define([
 						ReferenciaPago: "",
 						TipoCambio: "",
 						Usuario:  "",
-						ViaPago: viaPagoAnt
+						ViaPago: viaPagoAnt,
+						Status: "Information"
 					}
 					newData.push(objTotal)
 					totalGrupo=0;
@@ -373,7 +374,8 @@ sap.ui.define([
 						ReferenciaPago: "",
 						TipoCambio: "",
 						Usuario:  "",
-						ViaPago: viaPagoAnt
+						ViaPago: viaPagoAnt,
+						Status: "Information"
 					}
 					newData.push(objTotal)
 				}  
