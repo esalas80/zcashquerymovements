@@ -82,6 +82,7 @@ sap.ui.define([
 
                     }
                 }
+                console.log(data.d.results)
                 var closeCashModel = new sap.ui.model.json.JSONModel(data.d.results);
                 that.getView().setModel(closeCashModel,"cajaModel");
             }
@@ -172,7 +173,31 @@ sap.ui.define([
             var decodif = this.hex_to_string(codif);
             console.log(decodif)
         },
-
+        /* Converting a string to hexadecimal. */
+        /**
+         * @param  {} str string to convert exadecimal
+         */
+        string_to_hex: function (str) {
+            var arr1 = [];
+            for (var n = 0, l = str.length; n < l; n ++) 
+             {
+                var hex = Number(str.charCodeAt(n)).toString(16);
+                arr1.push(hex);
+             }
+            return arr1.join('');
+        },
+        /* Converting a hexadecimal string to a string. */
+        /**
+         * @param  {} str1 hexadecimal string to convert string
+         */
+        hex_to_string: function(str1){
+            var hex  = str1.toString();
+            var str = '';
+            for (var n = 0; n < hex.length; n += 2) {
+                str += String.fromCharCode(parseInt(hex.substr(n, 2), 16));
+            }
+            return str;
+        }
        
     });
 

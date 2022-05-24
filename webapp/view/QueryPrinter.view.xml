@@ -16,8 +16,8 @@
 				<layout:content>
 					<layout:BlockLayoutRow  scrollable="false"  title="Detalle de Saldos">
 						<layout:BlockLayoutCell   backgroundColorSet="ColorSet6" backgroundColorShade="ShadeD" >
-							<t:Table id="tblMovimientos" rows="{ path: 'MovimientosModel>/', sorter: { path: 'Indice', descending: true } }" selectionMode="None"
-								rowActionCount="1" class="sapUiTinyMarginBottom" rowSelectionChange=".onPress" visibleRowCount="10"
+							<t:Table id="tblMovimientos" rows="{ path: 'MovimientosModel>/' }" selectionMode="None"
+								rowActionCount="1" alternateRowColors="true" class="sapUiTinyMarginBottom" rowSelectionChange=".onPress" visibleRowCount="10"
 								ariaLabelledBy="title">
 								<t:extension>
 									<OverflowToolbar>
@@ -29,11 +29,14 @@
 										<Button press="downloadExcel" id="btnNoStockDownloadExcel" icon="sap-icon://excel-attachment" tooltip="{i18n>btnExcel}" type="Accept"/>
 									</OverflowToolbar>
 								</t:extension>
+								<t:rowSettingsTemplate>
+									<t:RowSettings highlight="{MovimientosModel>Status}" />
+								</t:rowSettingsTemplate>
 								<t:columns>
-									<t:Column sortProperty="Indice" filterProperty="Indice" width="4rem">
-										<Label text="{i18n>Ind}"/>
+									<t:Column sortProperty="Usuario" filterProperty="Usuario" width="8rem">
+										<Label text="{i18n>Usuario}"/>
 										<t:template>
-											<Text text="{MovimientosModel>Indice}" wrapping="false"/>
+											<Text text="{MovimientosModel>Usuario}" wrapping="false"/>
 										</t:template>
 									</t:Column>
 									<t:Column sortProperty="Caja" filterProperty="Caja" width="7rem">
@@ -99,6 +102,12 @@
 											<Text text="{MovimientosModel>FechaDoc}" wrapping="false"/>
 										</t:template>
 									</t:Column>
+									<t:Column sortProperty="HoraDocumento" filterProperty="HoraDocumento" width="7rem">
+										<Label text="{i18n>HoraDocto}"/>
+										<t:template>
+											<Text text="{MovimientosModel>HoraDocumento}" wrapping="false"/>
+										</t:template>
+									</t:Column>
 									<t:Column sortProperty="BancoCajero" filterProperty="BancoCajero" width="7rem">
 										<Label text="{i18n>Banco}"/>
 										<t:template>
@@ -125,6 +134,13 @@
 										</t:template>
 									</t:Column>
 								</t:columns>
+								<t:footer>
+									<OverflowToolbar id="IdTotal">
+										<Label design="Bold" text="{i18n>Totales}"/>
+										<ToolbarSpacer width="60%"/>
+										<Text id="TotalMocements" design="Bold" text="{path: 'MovimientosModel>/0/SumTotal',type: 'sap.ui.model.type.Float', formatOptions: { maxFractionDigits : 2, minFractionDigits: 0, groupingSeparator: ',', decimalSeparator: '.', groupingEnabled: true }} " wrapping="false"/>
+									</OverflowToolbar>
+								</t:footer>
 							</t:Table>
 						</layout:BlockLayoutCell>
 					</layout:BlockLayoutRow>	

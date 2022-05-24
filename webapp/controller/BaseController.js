@@ -226,14 +226,14 @@ sap.ui.define([
 		//Complemento para downloadExcel
 		createColumns: function () {
 			return [{
-				label: 'Indice',
-				property: 'Indice',
+				label: 'Usuario',
+				property: 'Usuario',
 			}, {
 				label: 'Caja',
 				property: 'CajeroSecuencia',
 			}, {
 				label: 'Operacion',
-				property: 'DecCentro',
+				property: 'Operacion',
 			}, {
 				label: 'Cliente',
 				property: 'Cliente',
@@ -260,8 +260,11 @@ sap.ui.define([
 				label: 'Fecha Documento',
 				property: 'FechaDoc',
                 format: "dd-mm-yyyy"
-			}, {
-				label: 'Banco',
+			},{
+				label: 'Hora Documento',
+				property: 'HoraDocumento',
+			},  {
+				label: 'Banco/Cajero',
 				property: 'BancoCajero',
 			}, {
 				label: 'Cta. Bancaria',
@@ -273,7 +276,110 @@ sap.ui.define([
 				label: 'Pagador',
 				property: 'Pagador',
 			}];
+		},
+		generatePrintQuery: function(model){
+			var granTotal = 0
+			var totalGrupo=0;
+			var vDataGroup =  model.sort(function(a, b){
+				if(a.ViaPago < b.ViaPago) return -1;
+				if(a.ViaPago > b.ViaPago) return 1;
+				return 0
+			});
+			var viaPagoAnt = ""
+			var cajeroAnt = ""
+			var viaPagoAnt = ""
+			var cajeroAnt = ""
+			
+			var newData=[];
+			for (let index = 0; index < vDataGroup.length; index++) {
+				var nViaPago = vDataGroup[index].ViaPago;
+				var objQueryMov = {
+					BancoCajero: vDataGroup[index].BancoCajero,
+					Caja:  vDataGroup[index].Caja,
+					CajeroSecuencia:  vDataGroup[index].CajeroSecuencia,
+					ClaveAutorizacion:  vDataGroup[index].ClaveAutorizacion,
+					Cliente: vDataGroup[index].Cliente,
+					CuentaBancaria: vDataGroup[index].CuentaBancaria,
+					Documento: vDataGroup[index].Documento,
+					FechaConta: vDataGroup[index].FechaConta,
+					FechaContabillizacion: vDataGroup[index].FechaContabillizacion,
+					FechaDoc: vDataGroup[index].FechaDoc,
+					FechaDocumento: vDataGroup[index].FechaDocumento,
+					HoraDocumento: vDataGroup[index].HoraDocumento,
+					Importe:  vDataGroup[index].Importe,
+					ImporteMoneda: vDataGroup[index].ImporteMoneda,
+					ImporteUSD: vDataGroup[index].ImporteUSD,
+					Indice: vDataGroup[index].Indice,
+					Operacion: vDataGroup[index].Operacion,
+					Pagador: vDataGroup[index].Pagador,
+					ReferenciaPago: vDataGroup[index].ReferenciaPago,
+					TipoCambio: vDataGroup[index].TipoCambio,
+					Usuario:  vDataGroup[index].Usuario,
+					ViaPago: vDataGroup[index].ViaPago
+				}
+				if((vDataGroup[index].ViaPago !== viaPagoAnt) && (viaPagoAnt !=="")){
+					var objTotal = {
+						BancoCajero: "",
+						Caja:  vDataGroup[index].Caja,
+						CajeroSecuencia:  vDataGroup[index].CajeroSecuencia,
+						ClaveAutorizacion:  "",
+						Cliente: "",
+						CuentaBancaria: "",
+						Documento: "",
+						FechaConta: "",
+						FechaContabillizacion: "",
+						FechaDoc: "",
+						FechaDocumento: "",
+						HoraDocumento: "",
+						Importe: totalGrupo.toFixed(3) ,
+						ImporteMoneda: vDataGroup[index].ImporteMoneda,
+						ImporteUSD: vDataGroup[index].ImporteUSD,
+						Indice: "",
+						Operacion: "",
+						Pagador: "",
+						ReferenciaPago: "",
+						TipoCambio: "",
+						Usuario:  "",
+						ViaPago: viaPagoAnt
+					}
+					newData.push(objTotal)
+					totalGrupo=0;
+				}
+				totalGrupo += parseFloat(vDataGroup[index].Importe.trim());
+				granTotal += parseFloat(vDataGroup[index].Importe.trim());
+				newData.push(objQueryMov)
+				viaPagoAnt= vDataGroup[index].ViaPago;
+				cajeroAnt= vDataGroup[index].BancoCajero;
+				if(index === vDataGroup.length-1){
+					var objTotal = {
+						BancoCajero: "",
+						Caja:  vDataGroup[index].Caja,
+						CajeroSecuencia:  vDataGroup[index].CajeroSecuencia,
+						ClaveAutorizacion:  "",
+						Cliente: "",
+						CuentaBancaria: vDataGroup[index].CuentaBancaria,
+						Documento: vDataGroup[index].Documento,
+						FechaConta: "",
+						FechaContabillizacion: "",
+						FechaDoc: "",
+						FechaDocumento: "",
+						HoraDocumento: "",
+						Importe: totalGrupo.toFixed(3) ,
+						ImporteMoneda: vDataGroup[index].ImporteMoneda,
+						ImporteUSD: vDataGroup[index].ImporteUSD,
+						Indice: "",
+						Operacion: "",
+						Pagador: "",
+						ReferenciaPago: "",
+						TipoCambio: "",
+						Usuario:  "",
+						ViaPago: viaPagoAnt
+					}
+					newData.push(objTotal)
+				}  
+			}
+			newData[0].SumTotal=granTotal.toFixed(3)
+			return newData;
 		}
     });
-
 });

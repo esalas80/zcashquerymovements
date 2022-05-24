@@ -81,6 +81,7 @@
                             <form:SimpleForm editable="true"   adjustLabelSpan="true"  singleContainerFullSize="true">
                                 <form:content>
                                     <m:Button text="{i18n>printQuery}" icon="sap-icon://print" type="Emphasized" iconFirst="true" width="50%" enabled="true" visible="true" iconDensityAware="false" press="_onGetQueryPrint"/>
+									
                                 </form:content>
                             </form:SimpleForm>
 						</layout:BlockLayoutCell>

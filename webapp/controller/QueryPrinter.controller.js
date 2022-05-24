@@ -73,7 +73,7 @@ sap.ui.define([
             var vexpand = "NavQueryMovs"
             var data = await  this._GEToDataV2ajaxComp(oModel,entity, filters, vexpand,"")
             if(data.d.results[0].NavQueryMovs.results.length > 0){
-            
+                
                 for (var i=0; i < data.d.results[0].NavQueryMovs.results.length; i++){
                     var year  = data.d.results[0].NavQueryMovs.results[i].FechaContabillizacion.substring(0,4);
                     var month  = data.d.results[0].NavQueryMovs.results[i].FechaContabillizacion.substring(4,6);
@@ -87,9 +87,9 @@ sap.ui.define([
                     data.d.results[0].NavQueryMovs.results[i].FechaDoc = fecDoc;
                 }
             
-                console.log(data.d.results[0].NavQueryMovs)
-                var movModel = new sap.ui.model.json.JSONModel(data.d.results[0].NavQueryMovs.results);
-                that.getView().setModel(movModel,"MovimientosModel");
+                var newData = this.generatePrintQuery(data.d.results[0].NavQueryMovs.results);
+                var movModel = new sap.ui.model.json.JSONModel(newData);
+                this.getView().setModel(movModel,"MovimientosModel");
             }
         },
         _onSearchFieldLiveChange: function (oEvent) {
@@ -156,10 +156,14 @@ sap.ui.define([
                     day  = data.d.results[0].NavQueryMovs.results[i].FechaDocumento.substring(6,8);
                     var fecDoc = day +"-"+ month +"-" + year;
                     data.d.results[0].NavQueryMovs.results[i].FechaDoc = fecDoc;
+                    var HH = data.d.results[0].NavQueryMovs.results[i].HoraDocumento.substring(0,2);
+                    var mm = data.d.results[0].NavQueryMovs.results[i].HoraDocumento.substring(2,4);
+                    var ss = data.d.results[0].NavQueryMovs.results[i].HoraDocumento.substring(4,6);
+                    var horaDoc = HH +":"+mm+":"+ss;
+                    data.d.results[0].NavQueryMovs.results[i].HoraDocumento = horaDoc;
                 }
-            
-                
-                that._onGetExcel(data.d.results[0].NavQueryMovs.results);
+                var newData = this.generatePrintQuery(data.d.results[0].NavQueryMovs.results);
+                this._onGetExcel(newData);
                 sap.ui.core.BusyIndicator.hide();
             }else{
                 sap.ui.core.BusyIndicator.hide();
