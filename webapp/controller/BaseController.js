@@ -346,6 +346,10 @@ sap.ui.define([
 					newData.push(objTotal)
 					totalGrupo=0;
 				}
+				var indexNeg =vDataGroup[index].Importe.indexOf("-")
+				if(indexNeg > 0) {
+					vDataGroup[index].Importe = -1 * (vDataGroup[index].Importe.replace("-",""))
+				}
 				totalGrupo += parseFloat(vDataGroup[index].Importe.trim());
 				granTotal += parseFloat(vDataGroup[index].Importe.trim());
 				newData.push(objQueryMov)
