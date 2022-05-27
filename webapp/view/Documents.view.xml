@@ -56,9 +56,21 @@
 								</layout:VerticalLayout>
 
 								<layout:VerticalLayout class="sapUiResponsiveContentPadding">
+									<m:Label text="{i18n>ClaseDoc}" />
+									<m:VBox>
+										<m:Label text="{detailModel>/ClaseDocumento}" design="Bold"/>
+									</m:VBox>
 									<m:Label text="{i18n>Socieda}" />
 									<m:VBox>
 										<m:Label text="{detailModel>/Sociedad}" design="Bold"/>
+									</m:VBox>
+
+									
+								</layout:VerticalLayout>
+								<layout:VerticalLayout class="sapUiResponsiveContentPadding">
+									<m:Label text="{i18n>Ejercicio} "  width="auto" textAlign="End" />
+									<m:VBox>
+										<m:Label text="{detailModel>/Ejercicio}" design="Bold" />
 									</m:VBox>
 
 									<m:Label text="{i18n>ref}" />
@@ -67,25 +79,13 @@
 									</m:VBox>
 								</layout:VerticalLayout>
 								<layout:VerticalLayout class="sapUiResponsiveContentPadding">
-									<m:Label text="{i18n>Ejercicio} "  width="auto" textAlign="End" />
-									<m:VBox>
-										<m:Label text="{detailModel>/Ejercicio}" design="Bold" />
-									</m:VBox>
-
-									<m:Label text="{i18n>NumGen} "  width="auto" textAlign="End"  />
-									<m:VBox>
-										<m:Label text="{detailModel>/NumeroGeneral}" design="Bold"/>
-									</m:VBox>
-								</layout:VerticalLayout>
-								<layout:VerticalLayout class="sapUiResponsiveContentPadding">
 									<m:Label text="{i18n>FecDocto} "  width="auto" textAlign="End"/>
 									<m:VBox>
 										<m:Label text="{detailModel>/FechaDocto}" design="Bold"/>
 									</m:VBox>
-
-									<m:Label text="{i18n>Moneda} "  width="auto" textAlign="End" />
+									<m:Label text="{i18n>NumGen} "  width="auto" textAlign="End"  />
 									<m:VBox>
-										<m:Label text="{detailModel>/Moneda}" design="Bold"/>
+										<m:Label text="{detailModel>/NumeroGeneral}" design="Bold"/>
 									</m:VBox>
 								</layout:VerticalLayout>
 								<layout:VerticalLayout class="sapUiResponsiveContentPadding">
@@ -94,11 +94,18 @@
 										<m:Label text="{detailModel>/FechaConta}" design="Bold"/>
 									</m:VBox>
 
+									<m:Label text="{i18n>Moneda} "  width="auto" textAlign="End" />
+									<m:VBox>
+										<m:Label text="{detailModel>/Moneda}" design="Bold"/>
+									</m:VBox>
+								</layout:VerticalLayout>
+								<layout:VerticalLayout class="sapUiResponsiveContentPadding">
 									<m:Label text="{i18n>GroupLeg} "  width="auto" textAlign="End" />
 									<m:VBox>
 										<m:Label text="{detailModel>/GrupoLegers}" design="Bold"/>
 									</m:VBox>
 								</layout:VerticalLayout>
+								
 							</m:FlexBox>
 						</layout:BlockLayoutCell> 
 					</layout:BlockLayoutRow>

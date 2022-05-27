@@ -89,6 +89,10 @@ sap.ui.define([
                     var ss = data.d.results[0].NavQueryMovs.results[i].HoraDocumento.substring(4,6);
                     var horaDoc = HH +":"+mm+":"+ss;
                     data.d.results[0].NavQueryMovs.results[i].HoraDocumento = horaDoc;
+                    var indexNeg = data.d.results[0].NavQueryMovs.results[i].Importe.indexOf("-")
+                    if(indexNeg > 0) {
+                        data.d.results[0].NavQueryMovs.results[i].Importe = (-1 * (data.d.results[0].NavQueryMovs.results[i].Importe.replace("-",""))).toString();
+                    }
                 }
             
                 var newData = this.generatePrintQuery(data.d.results[0].NavQueryMovs.results);
@@ -165,6 +169,10 @@ sap.ui.define([
                     var ss = data.d.results[0].NavQueryMovs.results[i].HoraDocumento.substring(4,6);
                     var horaDoc = HH +":"+mm+":"+ss;
                     data.d.results[0].NavQueryMovs.results[i].HoraDocumento = horaDoc;
+                    var indexNeg = data.d.results[0].NavQueryMovs.results[i].Importe.indexOf("-")
+                    if(indexNeg > 0) {
+                        data.d.results[0].NavQueryMovs.results[i].Importe = (-1 * (data.d.results[0].NavQueryMovs.results[i].Importe.replace("-",""))).toString();
+                    }
                 }
                 var newData = this.generatePrintQuery(data.d.results[0].NavQueryMovs.results);
                 this._onGetExcel(newData);

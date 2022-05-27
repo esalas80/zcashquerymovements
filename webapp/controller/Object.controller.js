@@ -59,6 +59,14 @@ sap.ui.define([
                     var sumImporteML=0.00;
                     var impMoneda="";
                     for (var i=0; i < data.d.results[0].NavIngresos.results.length; i++){
+                        var index = data.d.results[0].NavIngresos.results[i].Ingreso.indexOf("-")
+                        var indexML = data.d.results[0].NavIngresos.results[i].Ingreso.indexOf("-")
+                        if (index > 0){
+                            data.d.results[0].NavIngresos.results[i].Ingreso = -1 * parseFloat(data.d.results[0].NavIngresos.results[i].Ingreso)
+                        }
+                        if (indexML > 0){
+                            data.d.results[0].NavIngresos.results[i].Total = -1 * parseFloat(data.d.results[0].NavIngresos.results[i].Total)
+                        }
                         sumImporte = sumImporte +  parseFloat(data.d.results[0].NavIngresos.results[i].Ingreso);
                         sumImporteML = sumImporteML + parseFloat(data.d.results[0].NavIngresos.results[i].Total);
                         impMoneda = data.d.results[0].NavIngresos.results[i].IngresoMoneda;
@@ -79,10 +87,12 @@ sap.ui.define([
                         day  = data.d.results[0].NavMovimientos.results[i].FechaVencimiento.substring(6,8);
                         var fecVen = day +"-"+ month +"-" + year;
                         data.d.results[0].NavMovimientos.results[i].FechaVen = fecVen;
-
+                        var indexNeg = data.d.results[0].NavMovimientos.results[i].Importe.indexOf("-")
+                        if(indexNeg > 0) {
+                            data.d.results[0].NavMovimientos.results[i].Importe = (-1 * (data.d.results[0].NavMovimientos.results[i].Importe.replace("-",""))).toString();
+                        }
                     }
                 }
-                console.log(data.d.results)
                 var closeCashModel = new sap.ui.model.json.JSONModel(data.d.results);
                 that.getView().setModel(closeCashModel,"cajaModel");
             }
@@ -166,13 +176,6 @@ sap.ui.define([
             this.getRouter().navTo("documents");
         },
 
-        _onCodif:function(){
-            var cadena = "Hola neto"
-            var codif = this.string_to_hex(cadena)
-            console.log(codif)
-            var decodif = this.hex_to_string(codif);
-            console.log(decodif)
-        },
         /* Converting a string to hexadecimal. */
         /**
          * @param  {} str string to convert exadecimal

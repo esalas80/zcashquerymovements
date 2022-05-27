@@ -160,7 +160,7 @@
 					</layout:BlockLayoutRow>
 					<layout:BlockLayoutRow scrollable="false">
 						<layout:BlockLayoutCell   backgroundColorSet="ColorSet2" backgroundColorShade="ShadeE" >
-							<t:Table id="table" rows="{ path: 'cajaModel>/0/NavMovimientos/results', sorter: { path: 'Indice', descending: true } }" selectionMode="None"
+							<t:Table id="table" rows="{ path: 'cajaModel>/0/NavMovimientos/results', sorter: { path: 'Indice', ascending: true } }" selectionMode="None"
 								rowActionCount="1" class="sapUiTinyMarginBottom" rowSelectionChange=".onPress" visibleRowCount="5"
 								ariaLabelledBy="title">
 								
