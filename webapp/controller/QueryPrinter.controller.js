@@ -181,5 +181,87 @@ sap.ui.define([
                 sap.ui.core.BusyIndicator.hide();
             }
 		},
+        headRows: function() {
+            return [
+                { 
+                    caja: 'Caja', 
+                    cliente: 'Cliente', 
+                    vp: 'Vía Pago', 
+                    refpago: 'Ref Pago', 
+                    moneda: 'Moneda',
+                    importe: 'Importe',
+                    Documento: 'Documento',
+                    fechaConta: 'Fecha Contab',
+                    banco: 'Banco',
+                    cuentaBanc: 'Cta. Banc',
+                    clave: 'Cve. Autorizacion',
+                    pagador: 'Pagador' 
+                }
+            ]
+        
+        },
+        onDataExportPDF:function(oEvent){  
+            
+            var userdata = sessionStorage.getItem("UserItems") ? JSON.parse(sessionStorage.getItem("UserItems")) :  [];
+            var ModelData = this.getView().getModel("MovimientosModel").getData();
+            var doc = new jsPDF({
+                orientation: "landscape"
+            }); 
+            
+            doc.setFontSize(18)
+            doc.text(
+                'REPORTE DE MOVIMIENTOS', 100, 18)
+            doc.setFontSize(11)
+            doc.setTextColor(80)
+            doc.text("CAJA: " + userdata.Caja, 70, 28)
+            doc.text("USUARIO: " + userdata.Usuario, 120, 28)
+            doc.text("FECHA: " + userdata.Fecha, 180, 28)
+            var data = [];  
+                for(var i=0;i<ModelData.length;i++)   
+                {  
+                    var importe = ModelData[i].Importe.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                    importe =  importe.split(" ").join(""); 
+                    data[i]=[
+                            ModelData[i].CajeroSecuencia,
+                            ModelData[i].Cliente,
+                            ModelData[i].ViaPago,
+                            ModelData[i].ReferenciaPago,
+                            ModelData[i].ImporteMoneda,
+                            importe,
+                            ModelData[i].Documento,
+                            ModelData[i].FechaConta,
+                            ModelData[i].BancoCajero,
+                            ModelData[i].CuentaBancaria,
+                            ModelData[i].ClaveAutorizacion,
+                            ModelData[i].Pagador
+                            ];  
+                }
+            var lastRow = ModelData.length + 1;
+            data[ModelData.length] = ["","","","", "","","","","","","", ""] ; 
+            var importeTotal = ModelData[0].SumTotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            importeTotal =  importeTotal.split(" ").join(""); 
+
+            data[lastRow] = ["Totales","","","", "",importeTotal,"","","","","","", ""] ; 
+            doc.autoTable({
+                head: this.headRows(),
+                body: data,
+                theme: 'grid',
+                startY: 35,
+                showHead: 'firstPage',
+                headStyles: { fillColor: [0, 93, 169] },
+                styles: { cellPadding: 0.5, fontSize: 8 },
+                columnStyles: {
+                    importe: { halign: 'right'},
+                    vp: {halign: 'center'}
+                }   
+
+            }); 
+            
+            var dtValue = new Date();
+            var fileName = "RptMovimientos_" + String(dtValue.getDate()) + String(dtValue.getMonth()+1) + String(dtValue.getFullYear()) + String(dtValue.getHours()) + String(dtValue.getMinutes());
+            doc.save(fileName);  
+            
+        
+        } 
     });
 });    

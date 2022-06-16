@@ -26,7 +26,8 @@
 										</content>
 										<ToolbarSpacer/>
 										<SearchField placeholder="Buscar" showSearchButton="true" visible="true" width="283px" search="_onSearchFieldLiveChange"/>
-										<Button press="downloadExcel" id="btnNoStockDownloadExcel" icon="sap-icon://excel-attachment" tooltip="{i18n>btnExcel}" type="Accept"/>
+										<!--<Button press="downloadExcel" id="btnNoStockDownloadExcel" icon="sap-icon://excel-attachment" tooltip="{i18n>btnExcel}" type="Accept"/>-->
+										<Button press="onDataExportPDF" icon="sap-icon://pdf-attachment" tooltip="{i18n>btnPDF}"/>
 									</OverflowToolbar>
 								</t:extension>
 								<t:rowSettingsTemplate>

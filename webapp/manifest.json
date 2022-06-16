@@ -71,7 +71,15 @@
       }
     },
     "resources": {
-      "css": []
+      "css": [],
+      "js": [
+        {
+          "uri": "libs/jspdf.debug.js"
+        },
+        {
+          "uri": "libs/jspdf.plugin.autotable.js"
+        }
+      ]
     },
     "routing": {
       "config": {
