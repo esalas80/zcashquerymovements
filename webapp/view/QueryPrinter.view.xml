@@ -85,6 +85,15 @@
 												}" />
 										</t:template>
 									</t:Column>
+									<t:Column sortProperty="ImporteCheckIn" filterProperty="ImporteCheckIn" width="8rem">
+										<Label text="{i18n>ImporteCheckin}"/>
+										<t:template>
+												<u:Currency value="{
+													path: 'MovimientosModel>ImporteCheckIn',
+													type: 'sap.ui.model.type.String'
+												}" />
+										</t:template>
+									</t:Column>
 									<t:Column sortProperty="Documento" filterProperty="Documento" width="7rem">
 										<Label text="{i18n>noDocto}"/>
 										<t:template>
