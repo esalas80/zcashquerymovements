@@ -197,6 +197,8 @@ sap.ui.define([
                     moneda: 'Moneda',
                     importe: 'Importe',
                     importeCheckIn: 'Importe Check In',
+                    estatusCheckIn: 'Estatus Check In',
+                    noSeguimiento: 'Nro. Seguimiento',
                     Documento: 'Documento',
                     fechaConta: 'Fecha Contab',
                     banco: 'Banco',
@@ -236,6 +238,8 @@ sap.ui.define([
                             ModelData[i].ImporteMoneda,
                             importe,
                             ModelData[i].ImporteCheckIn,
+                            ModelData[i].EstatusCheckIn,
+                            ModelData[i].Seguimiento,
                             ModelData[i].Documento,
                             ModelData[i].FechaConta,
                             ModelData[i].BancoCajero,
@@ -245,7 +249,7 @@ sap.ui.define([
                             ];  
                 }
             var lastRow = ModelData.length + 1;
-            data[ModelData.length] = ["","","","", "","","","","","","", "", ""] ; 
+            data[ModelData.length] = ["","","","", "","","","","","","", "", "", "", ""] ; 
             var importeTotal = ModelData[0].SumTotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
             importeTotal =  importeTotal.split(" ").join(""); 
 

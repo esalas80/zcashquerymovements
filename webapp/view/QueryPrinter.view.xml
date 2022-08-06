@@ -94,6 +94,18 @@
 												}" />
 										</t:template>
 									</t:Column>
+									<t:Column sortProperty="EstatusCheckIn" filterProperty="EstatusCheckIn" width="7rem">
+										<Label text="{i18n>StatusCheckIN}"/>
+										<t:template>
+											<Text text="{MovimientosModel>EstatusCheckIn}" wrapping="false"/>
+										</t:template>
+									</t:Column>
+									<t:Column sortProperty="Seguimiento" filterProperty="Seguimiento" width="7rem">
+										<Label text="{i18n>Seg}"/>
+										<t:template>
+											<Text text="{MovimientosModel>Seguimiento}" wrapping="false"/>
+										</t:template>
+									</t:Column>
 									<t:Column sortProperty="Documento" filterProperty="Documento" width="7rem">
 										<Label text="{i18n>noDocto}"/>
 										<t:template>
